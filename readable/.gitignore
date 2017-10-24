@@ -1,9 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
-api-server/node_modules/
-readable/node_modules/
-.idea/
+/node_modules
 
 # testing
 /coverage
@@ -21,6 +19,3 @@ readable/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-
-
