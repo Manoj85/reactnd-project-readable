@@ -9,5 +9,4 @@ function post(state = {}, action) {
 
 export default combineReducers({
     post
-
 })
