@@ -1,6 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
 # dependencies
+node_modules/
 api-server/node_modules/
 readable/node_modules/
 .idea/
