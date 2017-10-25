@@ -26,10 +26,11 @@ class PostsList extends Component {
 					<li className="posts-item" key={id}>
 						<div className="row">
 							<div className="col-md-10">
-								{trim(title)} By: {capitalize(trim(author))}
+								<label>Title</label> {capitalize(title)}
+								<label>Author</label>{capitalize(author)}
 							</div>
-							<div className="col-md-2">
-								Total Comments = {commentCount}
+							<div className="col-md-2 posts-item-comments">
+								{commentCount} Comments
 							</div>
 						</div>
 					</li>

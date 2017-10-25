@@ -7,7 +7,7 @@ import { SORT_BY_LATEST, SORT_BY_VOTES } from '../actions/SortAction'
 const initialPostsState = {}
 const initialSortState = {
 	posts: { order:'byLatest'},
-	comments: { order:'byNewest'}
+	comments: { order:'byLatest'}
 }
 
 function posts(state = initialPostsState, action){
