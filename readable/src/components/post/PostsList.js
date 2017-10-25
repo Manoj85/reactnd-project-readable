@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import EditIcon from 'react-icons/lib/fa/edit'
+import DeleteIcon from 'react-icons/lib/md/delete'
 
 import { getAllPosts } from '../../actions/PostsAction'
 import { sortByLatest, sortByVotes } from '../../actions/SortAction'
@@ -25,13 +27,11 @@ class PostsList extends Component {
 				return(
 					<li className="posts-item" key={id}>
 						<div className="row">
-							<div className="col-md-10">
-								<label>Title</label> {capitalize(title)}
-								<label>Author</label>{capitalize(author)}
-							</div>
-							<div className="col-md-2 posts-item-comments">
-								{commentCount} Comments
-							</div>
+							<div className="col-sm-6"> <label>Title:</label> {capitalize(title)}</div>
+							<div className="col-sm-2"> <label>Author:</label>{capitalize(author)}</div>
+							<div className="col-sm-1"> <EditIcon size={30}/> </div>
+							<div className="col-sm-1"> <DeleteIcon size={30} /> </div>
+							<div className="col-sm-2 posts-item-comments"> {commentCount} Comments </div>
 						</div>
 					</li>
 				)

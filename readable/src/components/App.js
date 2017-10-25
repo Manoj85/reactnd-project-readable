@@ -5,7 +5,7 @@ import PostsList from './post/PostsList';
 class App extends Component {
 	render() {
 		return (
-			<div className="container">
+			<div>
 				<Switch>
 					<Route path="/" component={PostsList} />
 					<Route exact path="/:category" component={props => <PostsList {...props} />}

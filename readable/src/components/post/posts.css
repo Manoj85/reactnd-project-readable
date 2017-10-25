@@ -11,6 +11,7 @@
     border: solid 2px darkgreen;
     border-radius: 10px;
     padding: 4px;
+    font-size: 13px;
 }
 
 .posts-item-comments {

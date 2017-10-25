@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css'
 import './components/post/posts.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './components/App';
 import ErrorBoundary from './components/ErrorBoundary';
 import rootReducer from './reducers/rootReducer';
