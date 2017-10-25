@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-class PostsMain extends Component {
+import { getAllPosts } from '../../actions/PostsAction'
+
+class PostsList extends Component {
+
+	componentDidMount(){
+		this.props.getAllPosts()
+	}
 
 	showAllPosts(){
 		const { posts } = this.props
@@ -20,4 +27,10 @@ class PostsMain extends Component {
 	}
 }
 
-export default PostsMain;
+function mapStateToProps({posts}) {
+	return { posts }
+}
+
+export default connect(mapStateToProps, {
+	getAllPosts
+})(PostsList)
