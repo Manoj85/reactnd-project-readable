@@ -5,5 +5,5 @@ export const API_URL_HEADERS = {
 	'Authorization': localStorage.token ? localStorage.token : Math.random().toString(36).substr(-8)
 }
 
-export const GET_ALL_POSTS = 'GET_ALL_POSTS';
+
 

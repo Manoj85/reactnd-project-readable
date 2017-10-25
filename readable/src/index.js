@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
+import ErrorBoundary from './components/ErrorBoundary';
 import rootReducer from './reducers/rootReducer';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -19,7 +20,7 @@ const store = createStore(rootReducer,
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+	        <ErrorBoundary><App /></ErrorBoundary>
         </BrowserRouter>
     </Provider>
     , document.getElementById('root'));

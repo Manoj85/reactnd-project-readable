@@ -1,13 +1,9 @@
 import axios from 'axios'
-import {
-	API_URL,
-	API_URL_HEADERS,
+import { API_URL, API_URL_HEADERS } from './global';
 
-	GET_ALL_POSTS
+axios.defaults.headers.common['Authorization'] = API_URL_HEADERS
 
-} from './global';
-
-axios.defaults.headers.common['Authorization'] = API_URL_HEADERS;
+export const GET_ALL_POSTS = 'GET_ALL_POSTS';
 
 export function getAllPosts(){
 	const request = axios.get(`${API_URL}/posts`)
