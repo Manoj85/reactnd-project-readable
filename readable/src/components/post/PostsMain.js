@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class PostsComponent extends Component {
+class PostsMain extends Component {
     render() {
         return (
             <div className="row d-flex justify-content-between">
@@ -10,4 +10,4 @@ class PostsComponent extends Component {
     }
 }
 
-export default PostsComponent;
+export default PostsMain;
