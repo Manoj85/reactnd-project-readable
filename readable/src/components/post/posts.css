@@ -1,20 +1,29 @@
 
 
 .posts {
-    width: 40%;
     border: solid 2px coral;
     padding: 20px;
     border-radius: 5px;
+    font-family: Arial, sans-serif;
 }
-.posts-item {
-    margin-bottom: 20px;
-    border: solid 2px darkgreen;
-    border-radius: 10px;
-    padding: 4px;
+.posts-item, .posts-header-item {
     font-size: 13px;
+}
+
+.posts-header-item {
+    font-weight: bold;
 }
 
 .posts-item-comments {
     color: darkslateblue;
     font-size: small;
+}
+
+.posts-item > div {
+    border-right: solid 0px #ccc;
+    padding: 4px;
+}
+
+.align-center {
+    text-align: center;
 }

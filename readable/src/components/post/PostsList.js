@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
+
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
@@ -25,13 +27,13 @@ class PostsList extends Component {
 			// Filter the Non-deleted posts
 			if(deleted === false){
 				return(
-					<li className="posts-item" key={id}>
-						<div className="row">
-							<div className="col-sm-6"> <label>Title:</label> {capitalize(title)}</div>
-							<div className="col-sm-2"> <label>Author:</label>{capitalize(author)}</div>
-							<div className="col-sm-1"> <EditIcon size={30}/> </div>
-							<div className="col-sm-1"> <DeleteIcon size={30} /> </div>
-							<div className="col-sm-2 posts-item-comments"> {commentCount} Comments </div>
+					<li key={id}>
+						<div className="row posts-item">
+							<div className="col-sm-5">{capitalize(title)}</div>
+							<div className="col-sm-2">{capitalize(author)}</div>
+							<div className="col-sm-1 align-center"><EditIcon size={20}/></div>
+							<div className="col-sm-1 align-center"><DeleteIcon size={20} /></div>
+							<div className="col-sm-3 align-center posts-item-comments"> {commentCount} Comments </div>
 						</div>
 					</li>
 				)
@@ -43,10 +45,15 @@ class PostsList extends Component {
 
 	render() {
 		return (
-			<div className="container">
-				<ul className="posts">
-					{this.showAllPosts()}
-				</ul>
+			<div className="container posts">
+				<div className="row posts-header-item">
+					<div className="col-sm-5"> <label>Title</label> </div>
+					<div className="col-sm-2"> <label>Author</label> </div>
+					<div className="col-sm-1"> <label>Edit</label> </div>
+					<div className="col-sm-1"> <label>Delete</label> </div>
+					<div className="col-sm-3 align-center"> <label>Comments</label> </div>
+				</div>
+				<ul>{this.showAllPosts()}</ul>
 			</div>
 		)
 	}
