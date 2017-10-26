@@ -6,14 +6,16 @@ import { Link } from 'react-router-dom'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
-import { getAllPosts } from '../../actions/PostsAction'
+import { getPosts } from '../../actions/PostAction'
 import { sortByLatest, sortByVotes } from '../../actions/SortAction'
 import { capitalize, trim } from '../../utils/helper'
 
-class PostsList extends Component {
+import CategoryList from '../category/CategoryList'
+
+class PostList extends Component {
 
 	componentDidMount(){
-		this.props.getAllPosts()
+		this.props.getPosts()
 	}
 
 	showAllPosts(){
@@ -46,14 +48,20 @@ class PostsList extends Component {
 	render() {
 		return (
 			<div className="container posts">
-				<div className="row posts-header-item">
-					<div className="col-sm-5"> <label>Title</label> </div>
-					<div className="col-sm-2"> <label>Author</label> </div>
-					<div className="col-sm-1"> <label>Edit</label> </div>
-					<div className="col-sm-1"> <label>Delete</label> </div>
-					<div className="col-sm-3 align-center"> <label>Comments</label> </div>
+				<div className="row">
+					<CategoryList/>
+					<section className="col-sm-8">
+						<h1>Posts</h1>
+						<div className="row posts-header-item">
+							<div className="col-sm-5"> <label>Title</label> </div>
+							<div className="col-sm-2"> <label>Author</label> </div>
+							<div className="col-sm-1"> <label>Edit</label> </div>
+							<div className="col-sm-1"> <label>Delete</label> </div>
+							<div className="col-sm-3 align-center"> <label>Comments</label> </div>
+						</div>
+						<ul>{this.showAllPosts()}</ul>
+					</section>
 				</div>
-				<ul>{this.showAllPosts()}</ul>
 			</div>
 		)
 	}
@@ -71,7 +79,7 @@ function mapStateToProps({posts, comments, sorts}, ownProps) {
 }
 
 export default connect(mapStateToProps, {
-	getAllPosts,
+	getPosts,
 	sortByLatest,
 	sortByVotes
-})(PostsList)
+})(PostList)

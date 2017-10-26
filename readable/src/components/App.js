@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom';
-import PostsList from './post/PostsList';
+import PostList from './post/PostList';
 
 class App extends Component {
 	render() {
 		return (
-			<div>
 				<Switch>
-					<Route path="/" component={PostsList} />
-					<Route exact path="/:category" component={props => <PostsList {...props} />}
+					<Route path="/" component={PostList} />
+					<Route exact path="/:category" component={props => <PostList {...props} />}
 					/>
 				</Switch>
-			</div>
 		)
 	}
 }
