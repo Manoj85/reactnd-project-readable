@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
-import { getPosts } from '../../actions/PostAction'
+import { getPosts, getPostsByCategory } from '../../actions/PostAction'
 import { sortByLatest, sortByVotes } from '../../actions/SortAction'
 import { capitalize, trim } from '../../utils/helper'
 
@@ -15,7 +15,11 @@ import CategoryList from '../category/CategoryList'
 class PostList extends Component {
 
 	componentDidMount(){
-		this.props.getPosts()
+		if (this.props.match.params.category) {
+			this.props.getPostsByCategory(this.props.match.params.category);
+		} else {
+			this.props.getPosts()
+		}
 	}
 
 	showAllPosts(){
@@ -31,11 +35,12 @@ class PostList extends Component {
 				return(
 					<li key={id}>
 						<div className="row posts-item">
-							<div className="col-sm-5">{capitalize(title)}</div>
+							<div className="col-sm-4">{capitalize(title)}</div>
 							<div className="col-sm-2">{capitalize(author)}</div>
-							<div className="col-sm-1 align-center"><EditIcon size={20}/></div>
-							<div className="col-sm-1 align-center"><DeleteIcon size={20} /></div>
-							<div className="col-sm-3 align-center posts-item-comments"> {commentCount} Comments </div>
+							<div className="col-sm-1 "><EditIcon size={20}/></div>
+							<div className="col-sm-1 "><DeleteIcon size={20} /></div>
+							<div className="col-sm-3  posts-item-comments"> {commentCount} Comments </div>
+							<div className="col-sm-1 ">{capitalize(category)}</div>
 						</div>
 					</li>
 				)
@@ -50,14 +55,15 @@ class PostList extends Component {
 			<div className="container posts">
 				<div className="row">
 					<CategoryList/>
-					<section className="col-sm-8">
+					<section className="col-sm-9">
 						<h1>Posts</h1>
 						<div className="row posts-header-item">
-							<div className="col-sm-5"> <label>Title</label> </div>
+							<div className="col-sm-4"> <label>Title</label> </div>
 							<div className="col-sm-2"> <label>Author</label> </div>
 							<div className="col-sm-1"> <label>Edit</label> </div>
 							<div className="col-sm-1"> <label>Delete</label> </div>
-							<div className="col-sm-3 align-center"> <label>Comments</label> </div>
+							<div className="col-sm-3 "> <label>Comments</label> </div>
+							<div className="col-sm-1 "> <label>Category</label> </div>
 						</div>
 						<ul>{this.showAllPosts()}</ul>
 					</section>
@@ -80,6 +86,7 @@ function mapStateToProps({posts, comments, sorts}, ownProps) {
 
 export default connect(mapStateToProps, {
 	getPosts,
+	getPostsByCategory,
 	sortByLatest,
 	sortByVotes
 })(PostList)

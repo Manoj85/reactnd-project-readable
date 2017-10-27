@@ -12,11 +12,12 @@ class CategoryList extends Component {
 	}
 
 	render(){
+		const {categories} = this.props;
 		return(
-			<section className="col-sm-4">
+			<section className="col-sm-3">
 				<h1>Categories</h1>
-				{_.map(this.props.categories,(category) =>{
-					return <p><Link key={category.name} to={`/categories/${category.path}`}>{category.name}</Link></p>
+				{_.map(categories,(category) =>{
+					return <p key={category.name}><Link key={category.name} to={`/${category.path}`}>{category.name}</Link></p>
 				})}
 			</section>
 		)

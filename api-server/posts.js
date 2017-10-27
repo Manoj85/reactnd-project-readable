@@ -24,7 +24,18 @@ const defaultData = {
     voteScore: -5,
     deleted: false,
     commentCount: 0
-  }
+  },
+	"8ni6ok3ym7mq1p3qwlpow": {
+		id: '8ni6ok3ym7mq1p3qwlpow',
+		timestamp: 1468479767399,
+		title: 'Check out Udacity!',
+		body: 'Good place to start learning technology.',
+		author: 'udacityguy',
+		category: 'udacity',
+		voteScore: -5,
+		deleted: false,
+		commentCount: 0
+	}
 }
 
 function getData (token) {

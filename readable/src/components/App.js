@@ -7,8 +7,7 @@ class App extends Component {
 		return (
 				<Switch>
 					<Route path="/" component={PostList} />
-					<Route exact path="/:category" component={props => <PostList {...props} />}
-					/>
+					<Route path="/:category" component={props => <PostList {...props} />} />
 				</Switch>
 		)
 	}

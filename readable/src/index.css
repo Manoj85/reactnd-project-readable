@@ -16,7 +16,7 @@ li {
     margin: 0 auto;
     max-width: 1070px;
     padding: 20px;
-    width: 60% !important;
+    /* width: 60% !important; */
 }
 
 .header {

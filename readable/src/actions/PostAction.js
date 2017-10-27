@@ -13,3 +13,12 @@ export function getPosts(){
 		}).then((data)=>console.log(data))
 	}
 }
+
+export function getPostsByCategory(category) {
+	const request = axios.get(`${API_URL}/${category}/posts`)
+	return dispatch => {
+		request.then(({data})=>{
+			dispatch({type:GET_POSTS, payload:data})
+		}).then((data)=>console.log(data))
+	}
+}
