@@ -3,22 +3,25 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
 
+import AddIcon from 'react-icons/lib/md/add-box'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
 import { getPosts, getPostsByCategory } from '../../actions/PostAction'
 import { sortByLatest, sortByVotes } from '../../actions/SortAction'
-import { capitalize, trim } from '../../utils/helper'
+import { capitalize } from '../../utils/helper'
 
 import CategoryList from '../category/CategoryList'
 
 class PostList extends Component {
 
 	componentDidMount(){
-		if (this.props.match.params.category) {
-			this.props.getPostsByCategory(this.props.match.params.category);
-		} else {
 			this.props.getPosts()
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.match.params.category) {
+			nextProps.getPostsByCategory(nextProps.match.params.category);
 		}
 	}
 
@@ -56,7 +59,12 @@ class PostList extends Component {
 				<div className="row">
 					<CategoryList/>
 					<section className="col-sm-9">
-						<h1>Posts</h1>
+						<section className="posts-title-box">
+							<h1>Posts</h1>
+							<Link className="btn" to="/posts/new">
+								New Post <AddIcon className="svgstyle" size={20}/>
+							</Link>
+						</section>
 						<div className="row posts-header-item">
 							<div className="col-sm-4"> <label>Title</label> </div>
 							<div className="col-sm-2"> <label>Author</label> </div>

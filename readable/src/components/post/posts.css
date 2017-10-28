@@ -28,3 +28,29 @@
 .align-center {
     text-align: center;
 }
+
+.btn, .btn:hover, .btn:focus {
+    color: rgba(255, 255, 255, 0.9);
+    background-color: #07c;
+    border-color: #005999;
+    box-shadow: inset 0px 1px 0px #3af;
+}
+
+.posts-title-box h1, .posts-title-box a {
+    display: inline-block;
+}
+
+.posts-title-box a {
+    float: right;
+}
+
+.posts-title-box::after {
+    clear: both;
+}
+
+.svgstyle {
+    margin-left: 3px;
+    margin-top: -3px;
+
+}
+

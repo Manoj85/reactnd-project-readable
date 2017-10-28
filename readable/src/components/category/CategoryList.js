@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import _ from 'lodash'
 
 import { getCategories } from '../../actions/CategoryAction'
@@ -14,11 +14,19 @@ class CategoryList extends Component {
 	render(){
 		const {categories} = this.props;
 		return(
-			<section className="col-sm-3">
-				<h1>Categories</h1>
-				{_.map(categories,(category) =>{
-					return <p key={category.name}><Link key={category.name} to={`/${category.path}`}>{category.name}</Link></p>
-				})}
+			<section>
+				<nav>
+					<ul>
+						<li key="All"><NavLink exact to='/'>All</NavLink></li>
+						{ categories && (
+							_.map(categories,(category) =>
+								<li key={category.name}>
+									<NavLink exact to={`/${category.path}`}>{category.name}</NavLink>
+								</li>
+							))
+						}
+					</ul>
+				</nav>
 			</section>
 		)
 	}
