@@ -20,8 +20,9 @@ class PostList extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.match.params.category) {
-			nextProps.getPostsByCategory(nextProps.match.params.category);
+		if (nextProps.location.pathname !== this.props.location.pathname) {
+			const selectedCategory = nextProps.location.pathname.slice(1)
+			nextProps.getPostsByCategory(selectedCategory);
 		}
 	}
 
@@ -58,9 +59,9 @@ class PostList extends Component {
 			<div className="container posts">
 				<div className="row">
 					<CategoryList/>
-					<section className="col-sm-9">
+					<section className="col-sm-9 posts-container">
 						<section className="posts-title-box">
-							<h1>Posts</h1>
+							<label className="label-title">Posts</label>
 							<Link className="btn" to="/posts/new">
 								New Post <AddIcon className="svgstyle" size={20}/>
 							</Link>
@@ -89,7 +90,7 @@ function mapStateToProps({posts, comments, sorts}, ownProps) {
 			sorts: sorts.posts
 		}
 	}
-	return { posts, comments, sorts: sorts.posts}
+	return { posts, comments, sorts: sorts.posts }
 }
 
 export default connect(mapStateToProps, {

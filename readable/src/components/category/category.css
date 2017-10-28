@@ -1,0 +1,13 @@
+
+.category-container {
+    padding: 0 20px;
+    background: gainsboro;
+    border-radius: 4px;
+}
+.active {
+    background-color: #121214;
+    color: #fff;
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-family: Arial, sans-serif;
+}

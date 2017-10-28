@@ -1,9 +1,15 @@
 
+.posts-container {
+    background: #444343;
+    border-radius: 4px;
+    color: #fff;
+}
 
+.label-title {
+    text-transform: uppercase;
+    font-size: 13px;
+}
 .posts {
-    border: solid 2px coral;
-    padding: 20px;
-    border-radius: 5px;
     font-family: Arial, sans-serif;
 }
 .posts-item, .posts-header-item {
@@ -16,7 +22,6 @@
 }
 
 .posts-item-comments {
-    color: darkslateblue;
     font-size: small;
 }
 

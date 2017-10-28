@@ -9,7 +9,7 @@ class App extends Component {
 				<Switch>
 					<Route path="/" component={PostList} />
 					<Route path="/:category" component={props => <PostList {...props} />} />
-					<Route path="/posts/add" component={PostForm} />
+					<Route path="/posts/new" component={PostForm} />
 				</Switch>
 		)
 	}
