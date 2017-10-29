@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
+import {ButtonGroup, Button} from 'reactstrap';
 
 import AddIcon from 'react-icons/lib/md/add-box'
 import EditIcon from 'react-icons/lib/fa/edit'
@@ -76,6 +77,36 @@ class PostList extends Component {
 						</div>
 						<ul>{this.showAllPosts()}</ul>
 					</section>
+					<div className="post-filter-container">
+						<label className="label-title">Filter</label>
+						<div className="filter-btn">
+							<input id="mostVotes" type="radio" name="filter"
+										defaultChecked={true}
+							/>
+							<label htmlFor="mostVotes">Most</label>
+
+							<span className="slash">/</span>
+
+							<input id="leastVotes" type="radio" name="filter"
+							/>
+							<label htmlFor="leastVotes">Least</label>
+						</div>
+
+						<hr className="separator"></hr>
+
+						<div className="filter-btn">
+							<input id="newest" type="radio" name="filter"
+							       defaultChecked={true}
+							/>
+							<label htmlFor="newest">Newest</label>
+
+							<span className="slash">/</span>
+
+							<input id="oldest" type="radio" name="filter"
+							/>
+							<label htmlFor="oldest">Oldest</label>
+						</div>
+					</div>
 				</div>
 			</div>
 		)
