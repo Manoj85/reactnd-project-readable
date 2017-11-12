@@ -15,7 +15,7 @@ class CategoryList extends Component {
 	render(){
 		const {categories} = this.props
 
-		const category_all_obj = { name: 'all', path: 'all'	}
+		const category_all_obj = { name: 'all', path: '..'	}
 		if(categories.length > 0) categories.unshift(category_all_obj)
 
 		// const isActive = (path) => pathname === path ;
