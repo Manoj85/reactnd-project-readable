@@ -1,19 +1,34 @@
+// React
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+
+// Redux
+import {createStore, applyMiddleware, compose} from 'redux'
+import {Provider} from 'react-redux'
+import thunk from 'redux-thunk'
+
+// Routing and Links
+import { Router } from 'react-router-dom'
+import createBrowserHistory from 'history/createBrowserHistory'
+
+// App
+import App from './components/App'
+import registerServiceWorker from './registerServiceWorker'
+
+// Root Reducer
+import rootReducer from './reducers/rootReducer'
+
+// CSS Files
 import './index.css'
 import './components/post/posts.css'
 import './components/category/category.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import App from './components/App';
-import rootReducer from './reducers/rootReducer';
-import registerServiceWorker from './registerServiceWorker';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { Provider } from 'react-redux';
-import { Router } from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
-import thunk from 'redux-thunk';
 
+// Redux dev tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+// Redux Store
 const store = createStore(rootReducer,
     composeEnhancers(
         applyMiddleware(thunk)
@@ -27,4 +42,5 @@ ReactDOM.render(
         </Router>
     </Provider>
     , document.getElementById('root'));
+
 registerServiceWorker();
