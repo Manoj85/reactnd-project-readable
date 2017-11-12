@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import { Link } from 'react-router-dom'
 import {ButtonGroup, Button} from 'reactstrap';
 
-import AddIcon from 'react-icons/lib/md/add-box'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
@@ -63,9 +61,6 @@ class PostList extends Component {
 					<section className="col-sm-9 posts-container">
 						<section className="posts-title-box">
 							<label className="label-title">Posts</label>
-							<Link className="btn" to="/posts/new">
-								New Post <AddIcon className="svgstyle" size={20}/>
-							</Link>
 						</section>
 						<div className="row posts-header-item">
 							<div className="col-sm-4"> <label>Title</label> </div>
