@@ -12,22 +12,9 @@ li {
     list-style-type: none;
 }
 
-.container {
-    margin: 0 auto;
-    max-width: 1070px;
-    padding: 20px;
-    /* width: 60% !important; */
-}
-
-.header {
-    font-size: 50px;
-    font-weight: 300;
-    margin: 10px 0;
-}
-
-.subheader {
-    font-size: 30px;
-    font-weight: 300;
+.app {
+    font-family: Arial, sans-serif;
+    padding: 0;
 }
 
 .icon-btn {
@@ -35,9 +22,5 @@ li {
     border: none;
 }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 

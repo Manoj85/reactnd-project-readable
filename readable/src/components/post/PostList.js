@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
-import {ButtonGroup, Button} from 'reactstrap';
+import {Container, ButtonGroup, Button} from 'reactstrap';
+
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
@@ -11,6 +12,7 @@ import { sortByLatest, sortByVotes } from '../../actions/SortAction'
 import { capitalize } from '../../utils/helper'
 
 import CategoryList from '../category/CategoryList'
+import NavBar from '../NavBar'
 
 class PostList extends Component {
 
@@ -55,54 +57,57 @@ class PostList extends Component {
 
 	render() {
 		return (
-			<div className="container posts">
-				<div className="row">
-					<CategoryList/>
-					<section className="col-sm-9 posts-container">
-						<section className="posts-title-box">
-							<label className="label-title">Posts</label>
+			<div className="app">
+				<Container fluid>
+					<NavBar/>
+					<div className="row">
+						<CategoryList/>
+						<section className="col-sm-9 posts-container">
+							<section className="posts-title-box">
+								<label className="label-title">Posts</label>
+							</section>
+							<div className="row posts-header-item">
+								<div className="col-sm-4"> <label>Title</label> </div>
+								<div className="col-sm-2"> <label>Author</label> </div>
+								<div className="col-sm-1"> <label>Edit</label> </div>
+								<div className="col-sm-1"> <label>Delete</label> </div>
+								<div className="col-sm-3 "> <label>Comments</label> </div>
+								<div className="col-sm-1 "> <label>Category</label> </div>
+							</div>
+							<ul>{this.showAllPosts()}</ul>
 						</section>
-						<div className="row posts-header-item">
-							<div className="col-sm-4"> <label>Title</label> </div>
-							<div className="col-sm-2"> <label>Author</label> </div>
-							<div className="col-sm-1"> <label>Edit</label> </div>
-							<div className="col-sm-1"> <label>Delete</label> </div>
-							<div className="col-sm-3 "> <label>Comments</label> </div>
-							<div className="col-sm-1 "> <label>Category</label> </div>
-						</div>
-						<ul>{this.showAllPosts()}</ul>
-					</section>
-					<div className="post-filter-container">
-						<label className="label-title">Filter</label>
-						<div className="filter-btn">
-							<input id="mostVotes" type="radio" name="filter"
-										defaultChecked={true}
-							/>
-							<label htmlFor="mostVotes">Most</label>
+						<div className="post-filter-container">
+							<label className="label-title">Filter</label>
+							<div className="filter-btn">
+								<input id="mostVotes" type="radio" name="filter"
+											defaultChecked={true}
+								/>
+								<label htmlFor="mostVotes">Most</label>
 
-							<span className="slash">/</span>
+								<span className="slash">/</span>
 
-							<input id="leastVotes" type="radio" name="filter"
-							/>
-							<label htmlFor="leastVotes">Least</label>
-						</div>
+								<input id="leastVotes" type="radio" name="filter"
+								/>
+								<label htmlFor="leastVotes">Least</label>
+							</div>
 
-						<hr className="separator"></hr>
+							<hr className="separator"></hr>
 
-						<div className="filter-btn">
-							<input id="newest" type="radio" name="filter"
-							       defaultChecked={true}
-							/>
-							<label htmlFor="newest">Newest</label>
+							<div className="filter-btn">
+								<input id="newest" type="radio" name="filter"
+									   defaultChecked={true}
+								/>
+								<label htmlFor="newest">Newest</label>
 
-							<span className="slash">/</span>
+								<span className="slash">/</span>
 
-							<input id="oldest" type="radio" name="filter"
-							/>
-							<label htmlFor="oldest">Oldest</label>
+								<input id="oldest" type="radio" name="filter"
+								/>
+								<label htmlFor="oldest">Oldest</label>
+							</div>
 						</div>
 					</div>
-				</div>
+				</Container>
 			</div>
 		)
 	}
