@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import {Container, ButtonGroup, Button} from 'reactstrap';
 
-
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
@@ -12,9 +11,9 @@ import { sortByLatest, sortByVotes } from '../../actions/SortAction'
 import { capitalize } from '../../utils/helper'
 
 import CategoryList from '../category/CategoryList'
-import NavBar from '../NavBar'
+import NavBar from '../nav/NavBar'
 
-class PostList extends Component {
+class HomePage extends Component {
 
 	componentDidMount(){
 			this.props.getPosts()
@@ -63,9 +62,6 @@ class PostList extends Component {
 					<div className="row">
 						<CategoryList/>
 						<section className="col-sm-9 posts-container">
-							<section className="posts-title-box">
-								<label className="label-title">Posts</label>
-							</section>
 							<div className="row posts-header-item">
 								<div className="col-sm-4"> <label>Title</label> </div>
 								<div className="col-sm-2"> <label>Author</label> </div>
@@ -129,4 +125,4 @@ export default connect(mapStateToProps, {
 	getPostsByCategory,
 	sortByLatest,
 	sortByVotes
-})(PostList)
+})(HomePage)
