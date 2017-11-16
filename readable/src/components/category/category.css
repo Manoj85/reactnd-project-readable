@@ -1,13 +1,35 @@
 
 .category-container {
     padding: 0 20px;
-    background: gainsboro;
     border-radius: 4px;
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    margin-right: 60px;
 }
+
 .active {
     background-color: #121214;
     color: #fff;
     border-radius: 4px;
     padding: 2px 4px;
     font-family: Arial, sans-serif;
+}
+
+.category-name {
+    padding: .25em .4em;
+    font-size: 16px;
+    line-height: 1;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    margin-bottom: 10px;
+    width: fit-content;
+    color: #fff;
+    background-color: #868e96;
+}
+
+.category-name:hover {
+    background-color: #007bff;
+    text-decoration: none;
 }

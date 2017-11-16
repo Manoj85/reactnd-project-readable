@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom';
 import _ from 'lodash'
-import {Container, ButtonGroup, Button} from 'reactstrap';
 
+import AddIcon from 'react-icons/lib/md/add-box'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
@@ -16,7 +17,7 @@ import NavBar from '../nav/NavBar'
 class HomePage extends Component {
 
 	componentDidMount(){
-			this.props.getPosts()
+		this.props.getPosts()
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -56,54 +57,27 @@ class HomePage extends Component {
 
 	render() {
 		return (
-			<div className="app">
-				<Container fluid>
-					<NavBar/>
-					<div className="row">
+			<div className="container-fluid">
+
+                {/* Navigation Bar */}
+				<NavBar/>
+
+				{/* Content */}
+				<div className="container">
+					<div class="row">
+
+						{/* Category List */}
 						<CategoryList/>
-						<section className="col-sm-9 posts-container">
-							<div className="row posts-header-item">
-								<div className="col-sm-4"> <label>Title</label> </div>
-								<div className="col-sm-2"> <label>Author</label> </div>
-								<div className="col-sm-1"> <label>Edit</label> </div>
-								<div className="col-sm-1"> <label>Delete</label> </div>
-								<div className="col-sm-3 "> <label>Comments</label> </div>
-								<div className="col-sm-1 "> <label>Category</label> </div>
-							</div>
-							<ul>{this.showAllPosts()}</ul>
-						</section>
-						<div className="post-filter-container">
-							<label className="label-title">Filter</label>
-							<div className="filter-btn">
-								<input id="mostVotes" type="radio" name="filter"
-											defaultChecked={true}
-								/>
-								<label htmlFor="mostVotes">Most</label>
 
-								<span className="slash">/</span>
-
-								<input id="leastVotes" type="radio" name="filter"
-								/>
-								<label htmlFor="leastVotes">Least</label>
-							</div>
-
-							<hr className="separator"></hr>
-
-							<div className="filter-btn">
-								<input id="newest" type="radio" name="filter"
-									   defaultChecked={true}
-								/>
-								<label htmlFor="newest">Newest</label>
-
-								<span className="slash">/</span>
-
-								<input id="oldest" type="radio" name="filter"
-								/>
-								<label htmlFor="oldest">Oldest</label>
-							</div>
+						{/* Posts List */}
+						<div className="col-sm-9 posts-container">
+							<Link className="btn btn-dark justify-right" to="/posts/new">
+								<AddIcon className="svgstyle" size={20}/> New Post
+							</Link>
+							<ul className="posts-list">{this.showAllPosts()}</ul>
 						</div>
 					</div>
-				</Container>
+				</div>
 			</div>
 		)
 	}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash'
 
 import { capitalize } from '../../utils/helper'
-import AddIcon from 'react-icons/lib/md/add-box'
+
 import { getCategories } from '../../actions/CategoryAction'
 
 class CategoryList extends Component {
@@ -27,11 +27,7 @@ class CategoryList extends Component {
                 const categoryLinks = categories && (_.map(categories,(category) => {
                     return(
 						<Link key={category.path} to={`/${category.path}`} className='link'>
-							<div className='category'>
-								<div className='category-name'>
-                                    {capitalize(category.name)}
-								</div>
-							</div>
+							<div className="category-name">{category.name}</div>
 						</Link>
                     )
                 }))
@@ -41,10 +37,8 @@ class CategoryList extends Component {
         }
 
         return (
-			<div>
-				<Link className="btn" to="/posts/new">
-					Add New Post <AddIcon className="svgstyle" size={20}/>
-				</Link>
+			<div className="category-container">
+
 				<p/>
                 {showCategories()}
 			</div>

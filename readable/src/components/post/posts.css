@@ -1,6 +1,11 @@
 
 .posts-container {
-    background: #444343;
+
+}
+
+.posts-list {
+    background: lightblue;
+    border: solid 1px #000;
     border-radius: 4px;
     color: #fff;
 }
