@@ -3,7 +3,7 @@ const clone = require('clone')
 let db = {}
 
 const defaultData = {
-  "8xf0y6ziyjabvozdd253nd": {
+  "react-post-1": {
     id: '8xf0y6ziyjabvozdd253nd',
     timestamp: 1467166872634,
     title: 'Udacity is the best place to learn React',
@@ -14,7 +14,7 @@ const defaultData = {
     deleted: false,
     commentCount: 2
   },
-  "6ni6ok3ym7mf1p33lnez": {
+  "redux-post-1": {
     id: '6ni6ok3ym7mf1p33lnez',
     timestamp: 1468479767190,
     title: 'Learn Redux in 10 minutes!',
@@ -25,17 +25,28 @@ const defaultData = {
     deleted: false,
     commentCount: 0
   },
-	"8ni6ok3ym7mq1p3qwlpow": {
-		id: '8ni6ok3ym7mq1p3qwlpow',
-		timestamp: 1468479767399,
-		title: 'Check out Udacity!',
-		body: 'Good place to start learning technology.',
-		author: 'udacityguy',
-		category: 'udacity',
-		voteScore: -5,
-		deleted: false,
-		commentCount: 0
-	}
+  "udacity-post-1": {
+    id: '8ni6ok3ym7mq1p3qwlpow',
+    timestamp: 1468479767399,
+    title: 'Check out Udacity!',
+    body: 'Good place to start learning technology.',
+    author: 'udacityguy',
+    category: 'udacity',
+    voteScore: -5,
+    deleted: false,
+    commentCount: 0
+  },
+  "udacity-post-2": {
+    id: '8ni6ok3ym7df2p3qwlpow',
+    timestamp: 1468479323399,
+    title: 'Udacity Android Course',
+    body: 'Android Course is awesome!',
+    author: 'udacityguy',
+    category: 'udacity',
+    voteScore: -5,
+    deleted: false,
+    commentCount: 0
+  }
 }
 
 function getData (token) {
