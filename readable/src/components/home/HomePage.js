@@ -11,6 +11,13 @@ class HomePage extends Component {
 		this.props.getPosts()
 	}
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.location.pathname !== this.props.location.pathname) {
+            const selectedCategory = nextProps.location.pathname.slice(1)
+            nextProps.getPostsByCategory(selectedCategory);
+        }
+    }
+
 	render() {
 		const { posts } = this.props
 		return (
