@@ -18,9 +18,11 @@ class CategoryList extends Component {
 			<div className="category-container">
                 { !!categories && (_.map(categories, (category) => {
                     return (
-                        <Link key={category.path} to={`/${category.path}`}>
-                            <div className="category-name">{category.name}</div>
-                        </Link>
+						<div class="card margin-bottom-10">
+							<div class="card-block">
+								<Link key={category.path} className="btn btn-primary" to={`/${category.path}`}>{category.name}</Link>
+							</div>
+						</div>
                     )
                   }))
                 }

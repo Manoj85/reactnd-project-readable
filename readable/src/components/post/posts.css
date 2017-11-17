@@ -1,6 +1,11 @@
 
-.posts-container {
+.post-container {
+    height: 35em;
+    overflow-y: auto;
+}
 
+.post-container .card:first-child {
+    margin-top: 0;
 }
 
 .posts-list {
