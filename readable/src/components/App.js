@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import HomePage from './home/HomePage'
 import PostForm from './post/PostForm'
+import PostCard from './post/PostCard'
 import NavBar from './nav/NavBar'
 
 class App extends Component {
@@ -11,9 +12,10 @@ class App extends Component {
 				<NavBar/>
 
 				<Switch>
-					<Route path="/" component={HomePage} />
-					<Route path="/:category" component={props => <HomePage {...props} />} />
-					<Route path="/posts/new" component={PostForm} />
+					<Route exact path="/" component={HomePage} />
+					<Route exact path="/posts/new" component={PostForm} />
+					<Route exact path="/:category" component={props => <HomePage {...props} />} />
+					<Route exact path="/:category/:id" component={props => <PostCard {...props} />} />
 				</Switch>
 
 			</div>

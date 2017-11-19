@@ -7,10 +7,9 @@ class PostList extends Component {
 
     render() {
         const { posts } = this.props
-
         return (
             <div className="post-container">
-                    { !!posts && (_.map(posts, (post) => {
+                { !!posts && (_.map(posts, (post) => {
                     return (
                         <PostCard post={post} key={post.id}/>
                     )

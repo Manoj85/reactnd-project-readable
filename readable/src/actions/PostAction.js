@@ -58,8 +58,9 @@ export function editPost(id, values, callback){
 export function deletePost(id, callback){
 	const request = axios.delete(`${API_URL}/posts/${id}`)
 	return dispatch => {
-		request.then(()=>{
-			dispatch({type: DELETE_POST, payload: id})
-		}).then(()=>callback())
+        request.then(()=>{
+            dispatch({type:DELETE_POST, payload:id})
+        }).then((data)=>console.log(data))
 	}
 }
+
