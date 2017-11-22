@@ -9,6 +9,8 @@ import CloseIcon from 'react-icons/lib/fa/close'
 
 import { deletePost } from '../../actions/PostAction'
 
+import PostForm from './PostForm'
+
 class PostCard extends Component {
 
     constructor() {
@@ -19,7 +21,6 @@ class PostCard extends Component {
         };
 
         this.openModal = this.openModal.bind(this);
-        // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -38,8 +39,17 @@ class PostCard extends Component {
         }
     }
 
+    handleChange(e) {
+        let key = e.target.id
+        let editPost = this.state.editPost
+        editPost[key] = e.target.value
+        this.setState({
+            editPost: editPost
+        })
+    }
+
+
     editPost = () => {
-        // let postId = this.props.post.id
         this.openModal()
     }
 
@@ -78,8 +88,6 @@ class PostCard extends Component {
                     <p className="card-text"></p>
                 </div>
 
-
-
                 <Modal isOpen={this.state.modalIsOpen}
                        style={customStyles}
                        contentLabel="Edit Post"
@@ -99,25 +107,10 @@ class PostCard extends Component {
                                 </button>
                                 <p style={{clear: 'both'}}></p>
                             </section>
-                            <form onSubmit={this.savePost}>
-                                <div className="form-group">
-                                    <label>Title</label>
-                                    <input type="text" className="form-control" id="title" placeholder="Enter title" onChange={this.handleChange} required={true}/>
-                                </div>
-                                <div className="form-group">
-                                    <label>Body</label>
-                                    <textarea className="form-control" id="body" placeholder="Content of your post"  onChange={this.handleChange} required={true}/>
-                                </div>
-                                <div className="form-check">
-                                    <label>Categories: </label>
-                                    <select className="form-control" id="category" onChange={this.handleChange} required={true}>
-                                        {!!this.props.categories && this.props.categories.map(category => (
-                                            <option value={category.name} key={category.path}>{category.name}</option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <button type="submit" className="btn btn-primary">Save Post</button>
-                            </form>
+
+                            <PostForm currentPost={post} onSubmit={() => {this.closeModal()}} onCancel={() => {this.closeModal()}}/>
+
+
                         </div>
                     </div>
                 </Modal>
@@ -127,8 +120,8 @@ class PostCard extends Component {
     }
 }
 
-function mapStateToProps ({ posts }) {
-    return {posts}
+function mapStateToProps ({ posts, categories }) {
+    return {posts, categories}
 }
 
 export default connect(mapStateToProps, {
