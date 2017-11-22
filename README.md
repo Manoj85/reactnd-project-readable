@@ -31,3 +31,4 @@ Information about the API server and how to use it can be found in its [README f
 ## References
 
  - https://github.com/axios/axios
+ - https://github.com/reactjs/react-modal
