@@ -19,26 +19,6 @@
     text-transform: uppercase;
     font-size: 13px;
 }
-.posts {
-
-}
-.posts-item, .posts-header-item {
-    font-size: 13px;
-}
-
-.posts-header-item {
-    font-weight: bold;
-    width: 100%;
-}
-
-.posts-item-comments {
-    font-size: small;
-}
-
-.posts-item > div {
-    border-right: solid 0px #ccc;
-    padding: 4px;
-}
 
 .align-center {
     text-align: center;
@@ -51,46 +31,6 @@
     box-shadow: inset 0px 1px 0px #3af;
 }
 
-.posts-title-box h1, .posts-title-box a {
-    display: inline-block;
-}
 
-.posts-title-box a {
-    float: right;
-}
 
-.posts-title-box::after {
-    clear: both;
-}
-
-.svgstyle {
-    margin-left: 3px;
-    margin-top: -3px;
-}
-
-.post-filter-container {
-    padding: 5px 10px;
-    background: #e8dcf5;
-}
-
-.filter-btn {
-    font-size: 13px;
-}
-
-input {
-    visibility: hidden;
-    display: none;
-}
-input:checked + label {
-    color: rgba(0, 0 , 0, 0.8);
-    font-weight: 600;
-}
-
-label {
-    cursor: pointer;
-}
-
-.slash {
-    margin: 0 8px;
-}
 
