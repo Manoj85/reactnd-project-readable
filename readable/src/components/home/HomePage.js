@@ -12,7 +12,7 @@ class HomePage extends Component {
 	}
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.location.pathname !== this.props.location.pathname) {
+        if (nextProps.location.pathname !== '/') {
             const selectedCategory = nextProps.location.pathname.slice(1)
             nextProps.getPostsByCategory(selectedCategory);
         }
