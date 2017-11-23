@@ -4,37 +4,95 @@ import { connect } from 'react-redux'
 import { editPost, addPost } from '../../actions/PostAction'
 
 class PostForm extends Component {
-	componentDidMount() {
 
-	}
-
-    handleChange(event) {
-        // const {name, value} = event.target;
-        // this.setState({ [name]: value });
+    // Default state of Post object
+	initialPostState = {
+        title: '',
+        body: '',
+        category: '',
+        author: '',
+		mode: ''
     }
 
-    // handle form submission
-    savePost(e) {
-        e.preventDefault()
-        console.log("Save Post")
+    constructor(props) {
+        super(props);
+
+        this.state = this.initialPostState
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+    }
+
+    componentDidMount() {
+        const { currentPost } = this.props
+
+		if (!!currentPost) {
+        	this.setPostForEdit(currentPost)
+		} else {
+            this.setPostForCreate()
+		}
+    }
+
+    setPostForEdit = ( post ) => {
+		this.setState({
+			title: post.title,
+			body: post.body,
+			category: post.category,
+			author: post.author,
+			mode: 'edit'
+
+		})
+	}
+
+    setPostForCreate = () => {
+        this.setState({
+			category: 'Select',
+			mode: 'create'
+        })
+	}
+
+
+    handleChange(event) {
+        let key = event.target.id
+        let editPost = this.state
+        editPost[key] = event.target.value
+        this.setState({
+            title: editPost.title,
+            body: editPost.body,
+            category: editPost.category,
+            author: editPost.author
+        })
+    }
+
+    handleSubmit(event) {
+
+        const { title, body, category, author, mode } = this.state
+        const { currentPost } = this.props
+
+		if (mode === 'edit') {
+            this.props.editPost(currentPost.id, { title, body, category, author })
+		}
+
     }
 
 	render(){
-        const { currentPost, categories } = this.props
+
+        const { title, body, category, author } = this.state
+        const { categories } = this.props
 
 		return (
-			<form onSubmit={this.savePost}>
+			<form onSubmit={this.handleSubmit}>
 				<div className="form-group">
 					<label>Title</label>
-					<input type="text" className="form-control" id="title" value={currentPost.title} onChange={this.handleChange} required={true}/>
+					<input type="text" className="form-control" id="title" value={title} onChange={this.handleChange} required={true}/>
 				</div>
 				<div className="form-group">
 					<label>Body</label>
-					<textarea className="form-control" id="body" placeholder="Content of your post"  value={currentPost.body} onChange={this.handleChange} required={true}/>
+					<textarea className="form-control" id="body" placeholder="Content of your post"  value={body} onChange={this.handleChange} required={true}/>
 				</div>
 				<div className="form-check">
 					<label>Categories: </label>
-					<select className="form-control" id="category" value={currentPost.category} onChange={this.handleChange} required={true}>
+					<select className="form-control" id="category" value={category} onChange={this.handleChange} required={true}>
                         {!!categories && categories.map(category => (
 							<option value={category.name} key={category.path}>{category.name}</option>
                         ))}

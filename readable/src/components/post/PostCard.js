@@ -7,7 +7,7 @@ import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 import CloseIcon from 'react-icons/lib/fa/close'
 
-import { deletePost } from '../../actions/PostAction'
+import { addPost, editPost, deletePost } from '../../actions/PostAction'
 
 import PostForm from './PostForm'
 
@@ -125,5 +125,7 @@ function mapStateToProps ({ posts, categories }) {
 }
 
 export default connect(mapStateToProps, {
+    addPost,
+    editPost,
     deletePost
 })(PostCard)
