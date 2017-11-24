@@ -39,16 +39,6 @@ class PostCard extends Component {
         }
     }
 
-    handleChange(e) {
-        let key = e.target.id
-        let editPost = this.state.editPost
-        editPost[key] = e.target.value
-        this.setState({
-            editPost: editPost
-        })
-    }
-
-
     editPost = () => {
         this.openModal()
     }

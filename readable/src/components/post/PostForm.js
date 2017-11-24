@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import { editPost, addPost } from '../../actions/PostAction'
+import { guid } from '../../utils/helper'
 
 class PostForm extends Component {
 
@@ -35,6 +36,8 @@ class PostForm extends Component {
 
     setPostForEdit = ( post ) => {
 		this.setState({
+            id: post.id,
+            timestamp: post.timestamp,
 			title: post.title,
 			body: post.body,
 			category: post.category,
@@ -47,7 +50,9 @@ class PostForm extends Component {
     setPostForCreate = () => {
         this.setState({
 			category: 'Select',
-			mode: 'create'
+			mode: 'add',
+            id: guid(),
+            timestamp: Date.now()
         })
 	}
 
@@ -66,12 +71,16 @@ class PostForm extends Component {
 
     handleSubmit(event) {
 
-        const { title, body, category, author, mode } = this.state
+        const { id, timestamp, title, body, category, author, mode } = this.state
         const { currentPost } = this.props
 
 		if (mode === 'edit') {
             this.props.editPost(currentPost.id, { title, body, category, author })
 		}
+
+        if (mode === 'add') {
+            this.props.addPost({ id, timestamp, title, body, category, author })
+        }
 
     }
 
@@ -86,6 +95,10 @@ class PostForm extends Component {
 					<label>Title</label>
 					<input type="text" className="form-control" id="title" value={title} onChange={this.handleChange} required={true}/>
 				</div>
+                <div className="form-group">
+                    <label>Author</label>
+                    <input type="text" className="form-control" id="author" value={author} onChange={this.handleChange} required={true}/>
+                </div>
 				<div className="form-group">
 					<label>Body</label>
 					<textarea className="form-control" id="body" placeholder="Content of your post"  value={body} onChange={this.handleChange} required={true}/>
