@@ -52,6 +52,13 @@ class PostList extends Component {
                     Add Post <AddIcon size={20}/>
                 </button>
 
+                <section className="sortByContainer">
+                    Order By:
+                    <a href="#"> Votes </a>
+                    <span> / </span>
+                    <a href="#"> Date Created </a>
+                </section>
+
                 <Modal isOpen={this.state.modalIsOpen}
                        style={customStyles}
                        contentLabel="Add Post"
