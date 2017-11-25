@@ -9,6 +9,8 @@ import AddIcon from 'react-icons/lib/io/android-add'
 import PostCard from './PostCard'
 import PostForm from './PostForm'
 
+import { sortByPosts } from '../../actions/PostAction'
+
 class PostList extends Component {
 
     constructor() {
@@ -34,6 +36,15 @@ class PostList extends Component {
         this.openModal()
     }
 
+    sortBy = ( type ) => {
+        const { posts } = this.props
+        const postsArr = _.values(posts);
+
+        console.log(postsArr)
+
+        this.props.sortByPosts(postsArr, type)
+    }
+
     render() {
         const { posts } = this.props
         const customStyles = {
@@ -48,15 +59,15 @@ class PostList extends Component {
 
         return (
             <div className="post-container">
-                <button className="btn btn-info btn-sm margin-left-15" onClick={this.addPost}>
+                <button className="btn btn-info btn-sm" onClick={this.addPost}>
                     Add Post <AddIcon size={20}/>
                 </button>
 
                 <section className="sortByContainer">
-                    Order By:
-                    <a href="#"> Votes </a>
+                    <label className="sortByLabel"> Order By:</label>
+                    <a id="voteLink" onClick={() => this.sortBy('voteScore')}>Votes</a>
                     <span> / </span>
-                    <a href="#"> Date Created </a>
+                    <a id="timestampLink" onClick={() => this.sortBy('timestamp')}>Date Created</a>
                 </section>
 
                 <Modal isOpen={this.state.modalIsOpen}
@@ -99,4 +110,6 @@ function mapStateToProps({posts}) {
     return { posts }
 }
 
-export default connect(mapStateToProps)(PostList)
+export default connect(mapStateToProps, {
+    sortByPosts
+})(PostList)

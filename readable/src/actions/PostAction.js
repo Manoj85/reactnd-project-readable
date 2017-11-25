@@ -9,6 +9,9 @@ export const ADD_POST = 'ADD_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const DELETE_POST = 'DELETE_POST'
 
+export const SORT_BY_POSTS = 'SORT_BY_POSTS'
+
+
 export function getPosts(){
 	const request = axios.get(`${API_URL}/posts`)
 	return dispatch => {
@@ -63,4 +66,10 @@ export function deletePost(id, callback){
         }).then((data)=>console.log(data))
 	}
 }
+
+export function sortByPosts(posts, order){
+    return { type: SORT_BY_POSTS, posts, order }
+}
+
+
 

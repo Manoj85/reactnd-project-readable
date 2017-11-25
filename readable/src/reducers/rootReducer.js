@@ -1,15 +1,10 @@
 import { combineReducers } from 'redux'
-import _ from 'lodash';
+import _ from 'lodash'
 
-import { GET_POSTS, ADD_POST, EDIT_POST, DELETE_POST } from '../actions/PostAction'
-import { SORT_BY_LATEST, SORT_BY_VOTES } from '../actions/SortAction'
+import { GET_POSTS, ADD_POST, EDIT_POST, DELETE_POST, SORT_BY_POSTS } from '../actions/PostAction'
 import { GET_CATEGORIES } from '../actions/CategoryAction'
 
 const initialPostsState = {}
-const initialSortState = {
-	posts: { order:'byLatest'},
-	comments: { order:'byLatest'}
-}
 
 function posts(state = initialPostsState, action){
 	const { payload } = action
@@ -23,19 +18,17 @@ function posts(state = initialPostsState, action){
             return newState;
         case ADD_POST:
         case EDIT_POST:
-            return {...state, [payload.post.id]: payload.post };
-		default:
-			return state
-	}
-}
+            return {...state, [payload.post.id]: payload.post }
 
-function sorts(state = initialSortState, action){
-	const { type, order, item } = action
-	switch(type) {
-		case SORT_BY_LATEST:
-			return { ...state, [item]: { order } }
-		case SORT_BY_VOTES:
-			return { ...state, [item]: { order } }
+        case SORT_BY_POSTS:
+            return  action.posts.sort((a, b) => {
+                if (action.order == 'timestamp') {
+                    return a.timestamp < b.timestamp
+                } else if (action.order == 'voteScore') {
+                    return a.voteScore < b.voteScore;
+                }
+            })
+
 		default:
 			return state
 	}
@@ -53,6 +46,5 @@ function categories (state = [], action){
 
 export default combineReducers({
 	posts,
-	sorts,
 	categories
 })
