@@ -18,53 +18,60 @@ export const GET_COMMENTS_FOR_POST = 'GET_COMMENTS_FOR_POST'
 export function getPosts(){
 	const request = axios.get(`${API_URL}/posts`)
 	return dispatch => {
-		request.then(({data})=>{
-			dispatch({type:GET_POSTS, payload:data})
-		}).then((data)=>console.log(data))
+		request.then(({data})=> {
+			dispatch(loadPosts(data))
+		})
 	}
+}
+
+export function loadPosts(data) {
+    return {
+        type: GET_POSTS,
+        posts: data.filter(post => post.deleted !== true)
+    }
 }
 
 export function getPostsByCategory(category) {
 	const request = axios.get(`${API_URL}/${category}/posts`)
 	return dispatch => {
-		request.then(({data})=>{
-			dispatch({type:GET_POSTS, payload:data})
-		}).then((data)=>console.log(data))
+		request.then(({data}) => {
+			dispatch(loadPosts(data))
+		})
 	}
 }
 
-export function getPost(id){
+export function getPost(id) {
 	const request = axios.get(`${API_URL}/posts/${id}`)
 	return dispatch => {
-		request.then(({data})=>{
-			dispatch({type: GET_POST, payload: data})
-		}).then((data)=>console.log(data))
+		request.then(({data}) => {
+			dispatch({type: GET_POST, post: !!data ? [data] : [null]})
+		})
 	}
 }
 
-export function addPost(values, callback){
+export function addPost(values){
 	const request = axios.post(`${API_URL}/posts`, values)
 	return dispatch => {
 		request.then(({data})=>{
-			dispatch({type:ADD_POST, payload:data})
-		}).then(()=>{dispatch(getPosts())}).then(()=>callback())
+			dispatch({type: ADD_POST, post: data})
+		})
 	}
 }
 
-export function editPost(id, values, callback){
+export function editPost(id, values) {
 	const request = axios.put(`${API_URL}/posts/${id}`, values)
 	return dispatch => {
 		request.then(({data})=>{
-			dispatch({type:EDIT_POST, payload:data})
-		}).then(()=>callback())
+			dispatch({type: EDIT_POST, post: data})
+		})
 	}
 }
 
-export function deletePost(id, callback){
+export function deletePost(id){
 	const request = axios.delete(`${API_URL}/posts/${id}`)
 	return dispatch => {
         request.then(()=>{
-            dispatch({type:DELETE_POST, payload:id})
+            dispatch({type: DELETE_POST, postId: id})
         })
 	}
 }

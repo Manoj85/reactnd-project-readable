@@ -7,22 +7,22 @@ import { GET_CATEGORIES } from '../actions/CategoryAction'
 const initialPostsState = {}
 
 function posts(state = initialPostsState, action){
-	const { payload, postId } = action
+	// const { payload, postId } = action
+    const { posts, post, postId } = action
 
 	switch (action.type) {
         case GET_POSTS:
-            return _.mapKeys(payload, 'id')
+            return posts
+
         case DELETE_POST:
-            let newState = {...state}
-            delete newState[payload]
-            return newState
+            return state.filter(posts => posts.id !== postId)
 
         case GET_POST:
-            return payload
+            return post
 
         case ADD_POST:
         case EDIT_POST:
-            return {...state, [payload.post.id]: payload.post}
+            return {...state, [post.id]: post}
 
         case VOTE_UP_POST:
             return {
