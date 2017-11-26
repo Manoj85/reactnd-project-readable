@@ -16,23 +16,22 @@ class PostView extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.posts[0] === null) {
+        if (nextProps.posts === null) {
             return nextProps.history.push("/404")
         }
         this.setState({
-            posts: nextProps.posts[0],
+            posts: nextProps.posts,
             comments: nextProps.comments
         })
     }
 
     render() {
-        const post = this.props.posts
-
         return (
             <div className="container container-body">
                 <div className="row margin-15">
                    <div className="col-md-10">
-                       { !!post ? <h4> Post Not Found!!! </h4> : <PostCard post={post} key={post.id}/> }
+                       {/*{ !!post ? <h4> Post Not Found!!! </h4> : <PostCard post={post} key={post.id}/> }*/}
+                       <PostCard post={this.props.posts} key={this.props.posts.id}/>
                    </div>
                 </div>
             </div>

@@ -90,7 +90,6 @@ class PostCard extends Component {
                         </div>
                     </h5>
                     <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
-
                     <p className="card-comments">Comments: {post.commentCount}</p>
                 </div>
 
