@@ -13,6 +13,8 @@ export const SORT_BY_POSTS = 'SORT_BY_POSTS'
 export const VOTE_UP_POST = 'VOTE_UP_POST'
 export const VOTE_DOWN_POST = 'VOTE_DOWN_POST'
 
+export const GET_COMMENTS_FOR_POST = 'GET_COMMENTS_FOR_POST'
+
 export function getPosts(){
 	const request = axios.get(`${API_URL}/posts`)
 	return dispatch => {
@@ -36,8 +38,7 @@ export function getPost(id){
 	return dispatch => {
 		request.then(({data})=>{
 			dispatch({type: GET_POST, payload: data})
-			// dispatch(getComments(id))
-		})
+		}).then((data)=>console.log(data))
 	}
 }
 
@@ -85,6 +86,15 @@ export function setVoteScore(postId, voteOrder){
 			dispatch_action = {}
 	}
     return dispatch_action
+}
+
+export function getCommentsById(id){
+    const request = axios.get(`${API_URL}/posts/${id}+/comments`)
+    return dispatch => {
+        request.then(({data})=>{
+            dispatch({type: GET_COMMENTS_FOR_POST, post_id: id, comments: data})
+        })
+    }
 }
 
 

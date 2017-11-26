@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import _ from 'lodash'
 
-import { GET_POSTS, ADD_POST, EDIT_POST, DELETE_POST, SORT_BY_POSTS, VOTE_UP_POST, VOTE_DOWN_POST } from '../actions/PostAction'
+import { GET_POST, GET_POSTS, ADD_POST, EDIT_POST, DELETE_POST, SORT_BY_POSTS, VOTE_UP_POST, VOTE_DOWN_POST } from '../actions/PostAction'
 import { GET_CATEGORIES } from '../actions/CategoryAction'
 
 const initialPostsState = {}
@@ -16,6 +16,10 @@ function posts(state = initialPostsState, action){
             let newState = {...state}
             delete newState[payload]
             return newState
+
+        case GET_POST:
+            return payload
+
         case ADD_POST:
         case EDIT_POST:
             return {...state, [payload.post.id]: payload.post}
