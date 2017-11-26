@@ -7,7 +7,7 @@ import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 import CloseIcon from 'react-icons/lib/fa/close'
 
-import { addPost, editPost, deletePost } from '../../actions/PostAction'
+import { addPost, editPost, deletePost, setVoteScore } from '../../actions/PostAction'
 
 import PostForm from './PostForm'
 
@@ -43,6 +43,13 @@ class PostCard extends Component {
         this.openModal()
     }
 
+    doVotePost = (voteType) => {
+        let postId = this.props.post.id
+        if (!!postId) {
+            this.props.setVoteScore(postId, voteType)
+        }
+    }
+
     render() {
         const { post } = this.props
         const customStyles = {
@@ -60,7 +67,15 @@ class PostCard extends Component {
                 <div className="card-body">
                     <h5 className="card-title">
                         <div className="row">
-                            <div className="col-md-8">
+                            <div className="col-md-1">
+                                <div className="vote">
+                                    <a className="vote-up-off" title="" onClick={() => this.doVotePost('up')}>up vote</a>
+                                    <span className="vote-count-post">{post.voteScore}</span>
+                                    <a className="vote-down-off" title="" onClick={() => this.doVotePost('down')}>down vote</a>
+                                </div>
+                            </div>
+
+                            <div className="col-md-7">
                                 <Link to={'/' + post.category + '/' + post.id}> { post.title } </Link>
                                 <span className="text-muted" style={{fontSize: 16}}>{post.timestamp}</span>
                             </div>
@@ -75,7 +90,8 @@ class PostCard extends Component {
                         </div>
                     </h5>
                     <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
-                    <p className="card-text"></p>
+
+                    <p className="card-comments">Comments: {post.commentCount}</p>
                 </div>
 
                 <Modal isOpen={this.state.modalIsOpen}
@@ -99,8 +115,6 @@ class PostCard extends Component {
                             </section>
 
                             <PostForm currentPost={post} onSubmit={() => {this.closeModal()}} onCancel={() => {this.closeModal()}}/>
-
-
                         </div>
                     </div>
                 </Modal>
@@ -117,5 +131,6 @@ function mapStateToProps ({ posts, categories }) {
 export default connect(mapStateToProps, {
     addPost,
     editPost,
-    deletePost
+    deletePost,
+    setVoteScore
 })(PostCard)

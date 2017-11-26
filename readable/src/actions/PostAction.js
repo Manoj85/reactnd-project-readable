@@ -10,7 +10,8 @@ export const EDIT_POST = 'EDIT_POST'
 export const DELETE_POST = 'DELETE_POST'
 
 export const SORT_BY_POSTS = 'SORT_BY_POSTS'
-
+export const VOTE_UP_POST = 'VOTE_UP_POST'
+export const VOTE_DOWN_POST = 'VOTE_DOWN_POST'
 
 export function getPosts(){
 	const request = axios.get(`${API_URL}/posts`)
@@ -69,6 +70,21 @@ export function deletePost(id, callback){
 
 export function sortByPosts(posts, order){
     return { type: SORT_BY_POSTS, posts, order }
+}
+
+export function setVoteScore(postId, voteOrder){
+    let dispatch_action = {};
+    switch (voteOrder) {
+		case 'up':
+            dispatch_action = { type: VOTE_UP_POST, postId }
+            break
+		case 'down':
+            dispatch_action = { type: VOTE_DOWN_POST, postId }
+            break
+		default:
+			dispatch_action = {}
+	}
+    return dispatch_action
 }
 
 

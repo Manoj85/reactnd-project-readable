@@ -58,9 +58,49 @@
     background-image: linear-gradient(to top, #f4f5f5, #dfdddd);
 }
 
+.vote-score-label {
+    font-size: 0.99em;
+    margin: auto;
+}
 
+.vote {
+    text-align: center;
+}
 
+.vote-count-post {
+    margin: auto;
+}
 
+.vote-up-off, .vote-down-off {
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    text-indent: -999em;
+    width: 40px;
+    margin-bottom: 2px;
+    cursor: pointer;
+
+    background-image: url('vote.svg'), none;
+    background-size: initial;
+    background-repeat: no-repeat;
+    overflow: hidden
+}
+
+.vote-up-off {
+    background-position: 0 -170px;
+}
+
+.vote-down-off {
+    background-position: 0 -220px;
+}
+
+.vote-up-off.vote-up-on {
+    background-position: -40px -170px
+}
+
+.vote-down-off.vote-down-on {
+    background-position: -40px -220px
+}
 
 .sortByLabel {
     color: #000;
