@@ -5,10 +5,6 @@ import PostCard from './PostCard'
 
 class PostView extends Component {
 
-    constructor() {
-        super();
-    }
-
     componentWillMount() {
         let postId = this.props.match.params.id
         this.props.getPost(postId)
@@ -16,11 +12,11 @@ class PostView extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.posts === null) {
+        if (nextProps.posts[0] === null) {
             return nextProps.history.push("/404")
         }
         this.setState({
-            posts: nextProps.posts,
+            posts: nextProps.posts[0],
             comments: nextProps.comments
         })
     }
@@ -30,8 +26,10 @@ class PostView extends Component {
             <div className="container container-body">
                 <div className="row margin-15">
                    <div className="col-md-10">
-                       {/*{ !!post ? <h4> Post Not Found!!! </h4> : <PostCard post={post} key={post.id}/> }*/}
-                       <PostCard post={this.props.posts} key={this.props.posts.id}/>
+                       {this.props.posts[0] ?
+                           <PostCard post={this.props.posts[0]} key={this.props.posts[0].id} showComments={true}/>
+                           : "Post Not Found!!"
+                       }
                    </div>
                 </div>
             </div>

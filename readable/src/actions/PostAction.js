@@ -71,7 +71,7 @@ export function deletePost(id){
 	const request = axios.delete(`${API_URL}/posts/${id}`)
 	return dispatch => {
         request.then(() => {
-            dispatch({type: DELETE_POST, postId: id})
+            dispatch({type: DELETE_POST, post: id})
         })
 	}
 }
