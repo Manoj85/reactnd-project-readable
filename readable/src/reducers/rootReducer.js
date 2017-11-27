@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import _ from 'lodash'
 
-import { GET_POST, GET_POSTS, ADD_POST, EDIT_POST, DELETE_POST, SORT_BY_POSTS, VOTE_UP_POST, VOTE_DOWN_POST } from '../actions/PostAction'
+import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS, VOTE_UP_POST, VOTE_DOWN_POST } from '../actions/PostAction'
 import { GET_CATEGORIES } from '../actions/CategoryAction'
 
 const initialPostsState = {}
@@ -21,8 +21,13 @@ function posts(state = initialPostsState, action){
             return post
 
         case ADD_POST:
-        case EDIT_POST:
             return {...state, [post.id]: post}
+
+        case UPDATE_POST:
+            let result;
+            if (state.length > 1) { result = state.map(current_state => current_state.id === post.id ? post : current_state) }
+            else { result = [post] }
+            return result
 
         case VOTE_UP_POST:
             return {
