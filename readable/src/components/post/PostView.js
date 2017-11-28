@@ -41,19 +41,22 @@ class PostView extends Component {
                                      showComments={true}/>
                            : "Post Not Found!!"
                        }
+
+                       <div className="card-comments-box">
+                           <label>Comments:</label>
+                           {
+                               !!comments ?
+                                   _.map(comments, (comment) => {
+                                       return (
+                                           <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
+                                       )
+                                   })
+                                   :
+                                   <div>No Comments Found!!</div>
+                           }
+                       </div>
                    </div>
-                    <div className="card-comments-box">
-                        {
-                            !!comments ?
-                                _.map(comments, (comment) => {
-                                    return (
-                                        <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
-                                    )
-                                })
-                                :
-                                <div>No Comments Found!!</div>
-                        }
-                    </div>
+
                 </div>
             </div>
         )

@@ -48,8 +48,11 @@ class CommentCard extends Component {
                                 </div>
                             </div>
                             <div className="col-md-7">
-                                <span className="comment-title"> {comment.title} </span>
-                                <span className="text-muted" style={{fontSize: 16}}>{comment.timestamp}</span>
+                                <div className="margin-bottom-10">
+                                    <span className="comment-title"> {comment.body} </span>
+                                    <span className="text-muted" style={{fontSize: 16}}>{comment.timestamp}</span>
+                                </div>
+                                <h6 className="card-subtitle mb-2 text-muted margin-top-10">By: {comment.author}</h6>
                             </div>
                             <div className="col-md-2 ml-md-auto">
                                 <button className="btn btn-info btn-sm margin-left-15" id={comment.id}
@@ -63,7 +66,7 @@ class CommentCard extends Component {
                             </div>
                         </div>
                     </h5>
-                    <h6 className="card-subtitle mb-2 text-muted">By:</h6>
+
 
                 </div>
             </div>
