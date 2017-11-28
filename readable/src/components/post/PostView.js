@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPost, getCommentsById } from '../../actions/PostAction'
 import PostCard from './PostCard'
+import CommentCard from './CommentCard'
+import _ from 'lodash'
 
 class PostView extends Component {
 
     componentWillMount() {
         let postId = this.props.match.params.id
         this.props.getPost(postId)
-        // this.props.getCommentsById(postId)
+        this.props.getCommentsById(postId)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -22,15 +24,36 @@ class PostView extends Component {
     }
 
     render() {
+
+        const post = this.props.posts[0]
+        const postId = (!!post) ? post.id : ""
+        const comments = this.props.posts[postId]
+
+        console.log(comments)
+
         return (
             <div className="container container-body">
                 <div className="row margin-15">
                    <div className="col-md-10">
-                       {this.props.posts[0] ?
-                           <PostCard post={this.props.posts[0]} key={this.props.posts[0].id} showComments={true}/>
+                       {post ?
+                           <PostCard post={post}
+                                     key={postId}
+                                     showComments={true}/>
                            : "Post Not Found!!"
                        }
                    </div>
+                    <div className="card-comments-box">
+                        {
+                            !!comments ?
+                                _.map(comments, (comment) => {
+                                    return (
+                                        <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
+                                    )
+                                })
+                                :
+                                <div>No Comments Found!!</div>
+                        }
+                    </div>
                 </div>
             </div>
         )

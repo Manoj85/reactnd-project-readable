@@ -11,6 +11,7 @@ import {addPost, editPost, deletePost, addVote, subtractVote} from '../../action
 
 import PostForm from './PostForm'
 
+
 class PostCard extends Component {
 
     constructor() {
@@ -22,6 +23,11 @@ class PostCard extends Component {
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+    }
+
+    componentWillMount() {
+        const {post} = this.props
+        let postId = post.id
     }
 
     openModal() {
@@ -98,42 +104,28 @@ class PostCard extends Component {
                     <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
                     <p className="card-comments">Comments: {post.commentCount}</p>
                 </div>
-                <div className="card-comments-box">
-                    {comments && showComments ?
-                        <div>Comments Found</div>
-                        :
-                        <div>No Comments Found!!</div>
-                    }
-                </div>
+
 
                 <Modal isOpen={this.state.modalIsOpen}
                        style={customStyles}
                        contentLabel="Edit Post"
-                       onAfterOpen={() => {
-                       }}
-                       onRequestClose={() => {
-                       }}
+                       onAfterOpen={() => {}}
+                       onRequestClose={() => {}}
                        closeTimeoutMS={0}
                        shouldCloseOnOverlayClick={true}
                        transitionName="modal-anim">
 
                     <div className="row">
                         <div className="col-md-12">
-
                             <section style={{width: '100%'}}>
                                 <h4 style={{float: 'left'}}>Edit Post</h4>
-                                <button className="btn btn-danger btn-sm" style={{float: 'right'}}
-                                        onClick={this.closeModal}>
+                                <button className="btn btn-danger btn-sm" style={{float: 'right'}} onClick={this.closeModal}>
                                     <CloseIcon size={20}/>
                                 </button>
                                 <p style={{clear: 'both'}}></p>
                             </section>
 
-                            <PostForm currentPost={post} onSubmit={() => {
-                                this.closeModal()
-                            }} onCancel={() => {
-                                this.closeModal()
-                            }}/>
+                            <PostForm currentPost={post} onSubmit={() => {this.closeModal()}} onCancel={() => {this.closeModal()}}/>
                         </div>
                     </div>
                 </Modal>
@@ -143,8 +135,8 @@ class PostCard extends Component {
     }
 }
 
-function mapStateToProps({posts, categories}) {
-    return {posts, categories}
+function mapStateToProps({posts, categories, comments}) {
+    return {posts, categories, comments}
 }
 
 export default connect(mapStateToProps, {

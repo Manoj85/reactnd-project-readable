@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux'
 
-import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS } from '../actions/PostAction'
+import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS, GET_POST_COMMENTS } from '../actions/PostAction'
 import { GET_CATEGORIES } from '../actions/CategoryAction'
+import _ from 'lodash'
 
-const initialPostsState = { posts: [] }
+const initialPostsState = { posts: [], comments: [] }
 
 function posts(state = initialPostsState.posts, action){
-    const { posts, post } = action
+    const { posts, post, comments, postId } = action
 
 	switch (action.type) {
         case GET_POSTS:
@@ -35,6 +36,9 @@ function posts(state = initialPostsState.posts, action){
                     return a.voteScore < b.voteScore;
                 }
             })
+
+        case GET_POST_COMMENTS:
+            return { ...state, [postId]: _.values(comments)}
 
 		default:
 			return state
