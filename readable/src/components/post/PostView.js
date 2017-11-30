@@ -27,9 +27,7 @@ class PostView extends Component {
 
         const post = this.props.posts[0]
         const postId = (!!post) ? post.id : ""
-        const comments = this.props.posts[postId]
-
-        console.log(comments)
+        const comments = this.props.comments[postId]
 
         return (
             <div className="container container-body">
