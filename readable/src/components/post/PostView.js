@@ -34,28 +34,28 @@ class PostView extends Component {
         return (
             <div className="container container-body">
                 <div className="row margin-15">
-                   <div className="col-md-10">
-                       {post ?
-                           <PostCard post={post}
-                                     key={postId}
-                                     showComments={true}/>
-                           : "Post Not Found!!"
-                       }
+                    <div className="col-md-10">
+                        {post ?
+                            <PostCard post={post}
+                                      key={postId}
+                                      showComments={true}/>
+                            : "Post Not Found!!"
+                        }
 
-                       <div className="card-comments-box">
-                           <label>Comments:</label>
-                           {
-                               !!comments ?
-                                   _.map(comments, (comment) => {
-                                       return (
-                                           <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
-                                       )
-                                   })
-                                   :
-                                   <div>No Comments Found!!</div>
-                           }
-                       </div>
-                   </div>
+                        <div className="card-comments-box">
+                            <label>Comments:</label>
+                            {
+                                !!comments ?
+                                    _.map(comments, (comment) => {
+                                        return (
+                                            <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
+                                        )
+                                    })
+                                    :
+                                    <div>No Comments Found!!</div>
+                            }
+                        </div>
+                    </div>
 
                 </div>
             </div>

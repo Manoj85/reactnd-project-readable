@@ -7,7 +7,7 @@ import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 import CloseIcon from 'react-icons/lib/fa/close'
 
-import {addPost, editPost, deletePost, addVote, subtractVote} from '../../actions/PostAction'
+import {addPost, editPost, deletePost, addVote, subtractVote, getCommentsById} from '../../actions/PostAction'
 
 import PostForm from './PostForm'
 
@@ -26,8 +26,23 @@ class PostCard extends Component {
     }
 
     componentWillMount() {
-        const {post} = this.props
-        let postId = post.id
+        // this.props.getCommentsById(this.props.post.id)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.post) {
+            this.setState(prevState => ({
+                post: nextProps.post,
+                comments: nextProps.comments,
+                categories: nextProps.categories
+            }))
+        } else {
+            this.setState({
+                post: null,
+                categories: nextProps.categories,
+                comments: nextProps.comments
+            })
+        }
     }
 
     openModal() {
@@ -144,5 +159,6 @@ export default connect(mapStateToProps, {
     editPost,
     deletePost,
     addVote,
-    subtractVote
+    subtractVote,
+    getCommentsById
 })(PostCard)

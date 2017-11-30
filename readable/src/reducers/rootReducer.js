@@ -24,8 +24,10 @@ function posts(state = initialPostsState.posts, action){
 
         case UPDATE_POST:
             let result;
-            if (state.length > 1) { result = state.map(current_state => current_state.id === post.id ? post : current_state) }
-            else { result = post }
+            if (state.length > 0) {
+                result = state.map(current_state => current_state.id === post.id ? post : current_state)
+            }
+            else { result = [post] }
             return result
 
         case SORT_BY_POSTS:
@@ -38,6 +40,11 @@ function posts(state = initialPostsState.posts, action){
             })
 
         case GET_POST_COMMENTS:
+            /*
+            let current_post = state.find(post => post.id === postId);
+            current_post['comments'] = _.values(comments)
+            return state
+            */
             return { ...state, [postId]: _.values(comments)}
 
 		default:
