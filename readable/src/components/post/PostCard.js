@@ -26,7 +26,7 @@ class PostCard extends Component {
     }
 
     componentWillMount() {
-        // this.props.getCommentsById(this.props.post.id)
+        this.props.getCommentsById(this.props.post.id)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -92,11 +92,9 @@ class PostCard extends Component {
                         <div className="row">
                             <div className="col-md-1">
                                 <div className="vote">
-                                    <a className="vote-up-off" title="" onClick={() => this.doVotePost('upVote')}>up
-                                        vote</a>
+                                    <a className="vote-up-off" title="" onClick={() => this.doVotePost('upVote')}>upvote</a>
                                     <span className="vote-count-post">{post.voteScore}</span>
-                                    <a className="vote-down-off" title="" onClick={() => this.doVotePost('downVote')}>down
-                                        vote</a>
+                                    <a className="vote-down-off" title="" onClick={() => this.doVotePost('downVote')}>downvote</a>
                                 </div>
                             </div>
 
