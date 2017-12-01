@@ -3,11 +3,18 @@ import {connect} from 'react-redux'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
+import SaveIcon from 'react-icons/lib/md/save'
 
 import { editComment, deleteComment } from '../../actions/CommentAction'
 import CommentForm from './CommentForm'
 
 class CommentCard extends Component {
+
+    componentWillMount() {
+        this.setState( {
+            isEditMode: false
+        })
+    }
 
     removeComment = () => {
         const {comment, post} = this.props
@@ -17,6 +24,12 @@ class CommentCard extends Component {
     }
 
     editComment = () => {
+        this.setState( {
+            isEditMode: true
+        })
+    }
+
+    saveComment = () => {
 
     }
 
@@ -29,6 +42,10 @@ class CommentCard extends Component {
             this.props.subtractVote(postId)
         }
         */
+    }
+
+    handleChange(event) {
+
     }
 
     render() {
@@ -46,10 +63,30 @@ class CommentCard extends Component {
                                 </div>
                             </div>
                             <div className="col-md-7">
+
+
                                 <div className="margin-bottom-10">
-                                    <span className="comment-title"> {comment.body} </span>
-                                    <span className="text-muted" style={{fontSize: 16}}>{comment.timestamp}</span>
+
+                                    {this.state.isEditMode ?
+                                        <div>
+                                            <input type="text" value={this.state.value} onChange={this.handleChange} />
+                                            <button className="btn btn-danger btn-sm margin-left-15"
+                                                    id={comment.id}
+                                                    onClick={this.saveComment}>
+                                                <SaveIcon size={20}/>
+                                            </button>
+                                        </div>
+
+                                        :
+                                        <div>
+                                            <span className="comment-title"> {comment.body} </span>
+                                            <span className="text-muted"
+                                                  style={{fontSize: 16}}>{comment.timestamp}</span>
+                                        </div>
+                                    }
                                 </div>
+
+
                                 <h6 className="card-subtitle mb-2 text-muted margin-top-10">By: {comment.author}</h6>
                             </div>
                             <div className="col-md-2 ml-md-auto">
@@ -64,8 +101,6 @@ class CommentCard extends Component {
                             </div>
                         </div>
                     </h5>
-
-
                 </div>
             </div>
         )
