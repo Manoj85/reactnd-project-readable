@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getPost, getCommentsById } from '../../actions/PostAction'
+import { getPost } from '../../actions/PostAction'
+import { getCommentsById } from '../../actions/CommentAction'
 import PostCard from './PostCard'
 import CommentCard from './CommentCard'
 import _ from 'lodash'
@@ -28,6 +29,7 @@ class PostView extends Component {
         const post = this.props.posts[0]
         const postId = (!!post) ? post.id : ""
         const comments = this.props.comments[postId]
+        const commentLength = (!!comments) ? comments.length : 0
 
         return (
             <div className="container container-body">
@@ -36,7 +38,7 @@ class PostView extends Component {
                         {post ?
                             <PostCard post={post}
                                       key={postId}
-                                      showComments={true}/>
+                                      numcomments={commentLength}/>
                             : "Post Not Found!!"
                         }
 

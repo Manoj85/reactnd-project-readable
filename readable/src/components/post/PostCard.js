@@ -7,7 +7,8 @@ import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 import CloseIcon from 'react-icons/lib/fa/close'
 
-import {addPost, editPost, deletePost, addVote, subtractVote, getCommentsById} from '../../actions/PostAction'
+import { addPost, editPost, deletePost, addVote, subtractVote } from '../../actions/PostAction'
+import { getCommentsById } from '../../actions/CommentAction'
 
 import PostForm from './PostForm'
 
@@ -74,7 +75,7 @@ class PostCard extends Component {
     }
 
     render() {
-        const {post, comments, showComments} = this.props
+        const {post, numcomments} = this.props
         const customStyles = {
             content: {
                 top: '75px',
@@ -115,7 +116,7 @@ class PostCard extends Component {
                         </div>
                     </h5>
                     <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
-                    <p className="card-comments">Comments: {post.commentCount}</p>
+                    <p className="card-comments">Comments: {numcomments}</p>
                 </div>
 
 

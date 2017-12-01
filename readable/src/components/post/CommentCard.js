@@ -4,18 +4,16 @@ import {connect} from 'react-redux'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
-// import {editComment, deleteComment, addCommentVote, subtractCommentVote} from '../../actions/PostAction'
+import { editComment, deleteComment } from '../../actions/CommentAction'
 import CommentForm from './CommentForm'
 
 class CommentCard extends Component {
 
     removeComment = () => {
-        /*
-        let postId = this.props.post.id
-        if (!!postId) {
-            this.props.deletePost(postId)
+        const {comment, post} = this.props
+        if (!!post.id && comment.id) {
+            this.props.deleteComment(comment.id)
         }
-        */
     }
 
     editComment = () => {
@@ -81,10 +79,6 @@ function mapStateToProps({posts, categories}) {
 }
 
 export default connect(mapStateToProps, {
-    /*
     editComment,
-    deleteComment,
-    addCommentVote,
-    subtractCommentVote
-    */
+    deleteComment
 })(CommentCard)

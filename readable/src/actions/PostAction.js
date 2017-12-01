@@ -11,11 +11,6 @@ export const DELETE_POST = 'DELETE_POST'
 
 export const SORT_BY_POSTS = 'SORT_BY_POSTS'
 
-export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const UPDATE_COMMENT = 'UPDATE_COMMENT'
-export const DELETE_COMMENT = 'DELETE_COMMENT'
-
 export function getPosts(){
 	const request = axios.get(`${API_URL}/posts`)
 	return dispatch => {
@@ -102,15 +97,3 @@ export function updatePost (data) {
 export function sortByPosts(posts, order){
     return { type: SORT_BY_POSTS, posts, order }
 }
-
-export function getCommentsById(id){
-    const request = axios.get(`${API_URL}/posts/${id}/comments`)
-    return dispatch => {
-        request.then(({data})=>{
-            dispatch({type: GET_POST_COMMENTS, postId: id, comments: data})
-        })
-    }
-}
-
-
-
