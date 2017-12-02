@@ -3,17 +3,14 @@ import {connect} from 'react-redux'
 
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
-import SaveIcon from 'react-icons/lib/md/save'
 
-import { editComment, deleteComment } from '../../actions/CommentAction'
+import { deleteComment } from '../../actions/CommentAction'
 import CommentForm from './CommentForm'
 
 class CommentCard extends Component {
 
     componentWillMount() {
-        this.setState( {
-            isEditMode: false
-        })
+        this.setState({isEditMode: false})
     }
 
     removeComment = () => {
@@ -24,14 +21,14 @@ class CommentCard extends Component {
     }
 
     editComment = () => {
-        this.setState( {
-            isEditMode: true
-        })
+        this.setState({isEditMode: true})
     }
 
-    saveComment = () => {
-
+    closeEditMode = () => {
+        this.setState({isEditMode: false})
     }
+
+
 
     doVoteComment = (option) => {
         /*
@@ -49,7 +46,7 @@ class CommentCard extends Component {
     }
 
     render() {
-        const {comment} = this.props
+        const {comment, post} = this.props
         return (
             <div className="card margin-top-10" key={comment.id}>
                 <div className="card-body">
@@ -63,42 +60,28 @@ class CommentCard extends Component {
                                 </div>
                             </div>
                             <div className="col-md-7">
-
-
                                 <div className="margin-bottom-10">
-
-                                    {this.state.isEditMode ?
-                                        <div>
-                                            <input type="text" value={this.state.value} onChange={this.handleChange} />
-                                            <button className="btn btn-danger btn-sm margin-left-15"
-                                                    id={comment.id}
-                                                    onClick={this.saveComment}>
-                                                <SaveIcon size={20}/>
-                                            </button>
-                                        </div>
-
-                                        :
+                                    {this.state.isEditMode ? <CommentForm currentComment={comment} currentPost={post} buttonType="Update" onSubmit={() => {this.closeEditMode()}}/> :
                                         <div>
                                             <span className="comment-title"> {comment.body} </span>
-                                            <span className="text-muted"
-                                                  style={{fontSize: 16}}>{comment.timestamp}</span>
+                                            <span className="text-muted" style={{fontSize: 16}}>{comment.timestamp}</span>
                                         </div>
                                     }
                                 </div>
-
-
                                 <h6 className="card-subtitle mb-2 text-muted margin-top-10">By: {comment.author}</h6>
                             </div>
-                            <div className="col-md-2 ml-md-auto">
-                                <button className="btn btn-info btn-sm margin-left-15" id={comment.id}
-                                        onClick={this.editComment}>
-                                    <EditIcon size={20}/>
-                                </button>
-                                <button className="btn btn-danger btn-sm margin-left-15" id={comment.id}
-                                        onClick={this.removeComment}>
-                                    <DeleteIcon size={20}/>
-                                </button>
-                            </div>
+
+                            {!this.state.isEditMode ?
+                                <div className="col-md-2 ml-md-auto">
+                                    <button className="btn btn-info btn-sm margin-left-15" id={comment.id} onClick={this.editComment}>
+                                        <EditIcon size={20}/>
+                                    </button>
+                                    <button className="btn btn-danger btn-sm margin-left-15" id={comment.id} onClick={this.removeComment}>
+                                        <DeleteIcon size={20}/>
+                                    </button>
+                                </div>
+                                : ""
+                            }
                         </div>
                     </h5>
                 </div>
@@ -114,6 +97,5 @@ function mapStateToProps({posts, categories}) {
 }
 
 export default connect(mapStateToProps, {
-    editComment,
     deleteComment
 })(CommentCard)

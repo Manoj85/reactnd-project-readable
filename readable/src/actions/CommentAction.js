@@ -26,7 +26,7 @@ export function deleteComment(id){
     }
 }
 
-export function editComment(id){
+export function updateComment(id){
     const request = axios.delete(`${API_URL}/comments/${id}`)
     return dispatch => {
         request.then(({data}) => {

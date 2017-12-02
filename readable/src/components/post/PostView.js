@@ -4,6 +4,7 @@ import { getPost } from '../../actions/PostAction'
 import { getCommentsById } from '../../actions/CommentAction'
 import PostCard from './PostCard'
 import CommentCard from './CommentCard'
+import CommentForm from './CommentForm'
 import _ from 'lodash'
 
 class PostView extends Component {
@@ -54,6 +55,8 @@ class PostView extends Component {
                                     :
                                     <div>No Comments Found!!</div>
                             }
+
+                            {post ? <CommentForm currentPost={post} buttonType="Add" onSubmit={() => {this.closeEditMode()}}/> : "" }
                         </div>
                     </div>
 
