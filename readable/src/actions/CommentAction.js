@@ -26,11 +26,11 @@ export function deleteComment(id){
     }
 }
 
-export function updateComment(id){
-    const request = axios.delete(`${API_URL}/comments/${id}`)
+export function editComment(id, values){
+    const request = axios.put(`${API_URL}/comments/${id}`, values)
     return dispatch => {
         request.then(({data}) => {
-            dispatch({type: UPDATE_COMMENT, comment: data.id, postId: data.parentId})
+            dispatch(updateComment(data))
         })
     }
 }
@@ -42,4 +42,8 @@ export function addComment(id){
             dispatch({type: ADD_COMMENT, comment: data, postId: data.parentId})
         })
     }
+}
+
+export function updateComment (comment) {
+    return { type: UPDATE_COMMENT, comment: comment.id, postId: comment.parentId }
 }

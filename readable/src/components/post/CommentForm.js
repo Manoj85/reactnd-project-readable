@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { updateComment, addComment } from '../../actions/CommentAction'
-import SaveIcon from 'react-icons/lib/md/save'
+import { editComment, addComment } from '../../actions/CommentAction'
 import { guid } from '../../utils/helper'
 
 class CommentForm extends Component {
@@ -21,7 +20,6 @@ class CommentForm extends Component {
         this.state = this.initialPostState
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     componentDidMount() {
@@ -65,7 +63,7 @@ class CommentForm extends Component {
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit() {
         /*
         id: Any unique ID. As with posts, UUID is probably the best here.
         timestamp: timestamp. Get this however you want.
@@ -74,14 +72,14 @@ class CommentForm extends Component {
         parentId: Should match a post id in the database.
         */
         const { id, timestamp, body, author, mode } = this.state
-        const { currentComment } = this.props
+        const { currentPost, currentComment } = this.props
 
 		if (mode === 'edit') {
-            this.props.updateComment(currentComment.id, { body, author })
+            this.props.editComment(currentComment.id, { body, timestamp })
 		}
 
         if (mode === 'add') {
-            this.props.addComment({ id, timestamp, body, author })
+            this.props.addComment(currentPost, { id, timestamp, body, author })
         }
     }
 
@@ -91,11 +89,11 @@ class CommentForm extends Component {
         const { currentPost, buttonType } = this.props
 
 		return (
-            <div className="comment-form">
-                <input type="text" value={body} onChange={this.handleChange} />
+            <form className="comment-form" onSubmit={this.handleSubmit}>
+                <input type="text" id="body" value={body} onChange={this.handleChange} />
                 <button type="submit" className="btn btn-info btn-sm margin-left-8">{buttonType}</button>
-                { mode === 'edit' ? <button className="btn btn-info btn-sm margin-left-8" onClick={this.editComment}>Cancel</button> : '' }
-            </div>
+                { mode === 'edit' ? <button className="btn btn-info btn-sm margin-left-8" onClick={this.cancelComment}>Cancel</button> : '' }
+            </form>
 		)
 	}
 
@@ -106,6 +104,6 @@ function mapStateToProps({comment, posts}) {
 }
 
 export default connect(mapStateToProps, {
-    updateComment,
+    editComment,
     addComment
 })(CommentForm)
