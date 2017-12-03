@@ -20,9 +20,7 @@ class CommentCard extends Component {
                     comment: nextProps.comment
                 }))
             } else {
-                this.setState({
-                    comment: null
-                })
+                this.setState({comment: null})
             }
         }
     }
@@ -43,7 +41,7 @@ class CommentCard extends Component {
     }
 
     doVoteComment = (option) => {
-        let commentId = this.props.comment.id
+        const commentId = this.props.comment.id
         if (option === 'upVote') {
             this.props.addVote(commentId)
         } else if (option === 'downVote') {
