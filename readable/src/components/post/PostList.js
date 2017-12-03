@@ -96,7 +96,7 @@ class PostList extends Component {
                 { !!posts && (_.map(posts, (post) => {
 
                     return (
-                        <PostCard post={post} key={post.id} />
+                        <PostCard post={post} key={post.id} showBody={false}/>
                     )
                 }))
             }

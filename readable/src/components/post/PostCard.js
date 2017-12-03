@@ -74,7 +74,7 @@ class PostCard extends Component {
     }
 
     render() {
-        const {post} = this.props
+        const {post, showBody} = this.props
 
         const postId = (!!post) ? post.id : ""
         const comments = (!!this.props.comments) ? this.props.comments[postId] : []
@@ -108,11 +108,11 @@ class PostCard extends Component {
                                     <Link to={'/' + post.category + '/' + post.id}> {post.title} </Link>
                                     <span className="text-muted" style={{fontSize: 16}}>{post.timestamp}</span>
                                 </div>
-
-                                <div className="margin-bottom-10">
-                                    <span style={{fontSize: 16}}>{post.body}</span>
-                                </div>
-
+                                { showBody ?
+                                    <div className="margin-bottom-10">
+                                        <span style={{fontSize: 16}}>{post.body}</span>
+                                    </div> : ""
+                                }
                                 <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
                             </div>
 

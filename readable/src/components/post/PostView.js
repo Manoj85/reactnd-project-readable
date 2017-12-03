@@ -53,7 +53,7 @@ class PostView extends Component {
                             <section>
                                 <PostCard post={post}
                                           key={postId}
-                                          numcomments={commentLength}/>
+                                          showBody={true}/>
 
                                 <div className="card-comments-box">
                                     <label>Comments:</label>
