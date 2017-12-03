@@ -50,7 +50,12 @@ class CommentCard extends Component {
     }
 
     render() {
-        const {comment, post} = this.props
+        const {
+            comment,
+            comment: { id, voteScore, body, author, timestamp },
+            post
+        } = this.props
+
         return (
             <div className="card margin-top-10" key={comment.id}>
                 <div className="card-body">
