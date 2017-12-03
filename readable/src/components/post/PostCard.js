@@ -104,9 +104,18 @@ class PostCard extends Component {
                             </div>
 
                             <div className="col-md-7">
-                                <Link to={'/' + post.category + '/' + post.id}> {post.title} </Link>
-                                <span className="text-muted" style={{fontSize: 16}}>{post.timestamp}</span>
+                                <div className="margin-bottom-10">
+                                    <Link to={'/' + post.category + '/' + post.id}> {post.title} </Link>
+                                    <span className="text-muted" style={{fontSize: 16}}>{post.timestamp}</span>
+                                </div>
+
+                                <div className="margin-bottom-10">
+                                    <span style={{fontSize: 16}}>{post.body}</span>
+                                </div>
+
+                                <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
                             </div>
+
                             <div className="col-md-2 ml-md-auto">
                                 <button className="btn btn-info btn-sm margin-left-15" id={post.id}
                                         onClick={this.editPost}>
@@ -119,10 +128,9 @@ class PostCard extends Component {
                             </div>
                         </div>
                     </h5>
-                    <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
+
                     <p className="card-comments">Comments: {commentLength} </p>
                 </div>
-
 
                 <Modal isOpen={this.state.modalIsOpen}
                        style={customStyles}
