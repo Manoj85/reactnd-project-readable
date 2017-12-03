@@ -79,7 +79,8 @@ class CommentForm extends Component {
 		}
 
         if (mode === 'add') {
-            this.props.addComment(currentPost, { id, timestamp, body, author })
+            const postId = currentPost.id;
+            this.props.addComment({ id, timestamp, body, author: 'manoj', parentId: postId, voteScore: 1 })
         }
     }
 

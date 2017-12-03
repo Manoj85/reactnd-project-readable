@@ -75,7 +75,7 @@ class PostCard extends Component {
     }
 
     render() {
-        const {post, numcomments} = this.props
+        const {post} = this.props
         const customStyles = {
             content: {
                 top: '75px',
@@ -116,7 +116,7 @@ class PostCard extends Component {
                         </div>
                     </h5>
                     <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
-                    <p className="card-comments">Comments: {numcomments}</p>
+                    <p className="card-comments">Comments: </p>
                 </div>
 
 

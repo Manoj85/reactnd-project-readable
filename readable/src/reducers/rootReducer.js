@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 
 import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS } from '../actions/PostAction'
-import { GET_POST_COMMENTS, DELETE_COMMENT, UPDATE_COMMENT } from "../actions/CommentAction";
+import { GET_POST_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT } from "../actions/CommentAction";
 import { GET_CATEGORIES } from '../actions/CategoryAction'
 
 const initialStates = { posts: [], comments: [] }
@@ -55,7 +55,7 @@ function categories (state = [], action){
 }
 
 function comments (state = initialStates.comments, action){
-    const {  comments, postId, comment } = action
+    const { comments, postId, comment } = action
 
     switch (action.type) {
         case GET_POST_COMMENTS:
@@ -69,6 +69,11 @@ function comments (state = initialStates.comments, action){
         case UPDATE_COMMENT:
             return {
                 [postId] : state[postId].filter(current_comment_state => current_comment_state.id !== comment.id).push(comment)
+            }
+
+        case ADD_COMMENT:
+            return {
+                ...state, [postId]: state[postId].concat(comment)
             }
 
         default:
