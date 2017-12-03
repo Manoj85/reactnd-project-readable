@@ -21,7 +21,6 @@ class PostForm extends Component {
         this.state = this.initialPostState
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
     }
 
     componentDidMount() {
@@ -49,13 +48,12 @@ class PostForm extends Component {
 
     setPostForCreate = () => {
         this.setState({
-			category: 'Select',
+			category: this.props.categories[0].name,
 			mode: 'add',
             id: guid(),
             timestamp: Date.now()
         })
 	}
-
 
     handleChange(event) {
         let key = event.target.id

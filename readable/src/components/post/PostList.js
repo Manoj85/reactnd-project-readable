@@ -15,17 +15,8 @@ class PostList extends Component {
 
     constructor() {
         super();
-
-        this.state = {
-            modalIsOpen: false
-        };
-
-        this.openModal = this.openModal.bind(this);
+        this.state = { modalIsOpen: false };
         this.closeModal = this.closeModal.bind(this);
-    }
-
-    openModal() {
-        this.setState({modalIsOpen: true});
     }
 
     closeModal() {
@@ -33,13 +24,12 @@ class PostList extends Component {
     }
 
     addPost = () => {
-        this.openModal()
+        this.setState({modalIsOpen: true});
     }
 
     sortBy = ( type ) => {
         const { posts } = this.props
         const postsArr = _.values(posts);
-
         this.props.sortByPosts(postsArr, type)
     }
 

@@ -117,12 +117,10 @@ class PostCard extends Component {
                             </div>
 
                             <div className="col-md-2 ml-md-auto">
-                                <button className="btn btn-info btn-sm margin-left-15" id={post.id}
-                                        onClick={this.editPost}>
+                                <button className="btn btn-info btn-sm margin-left-15" id={post.id} onClick={this.editPost}>
                                     <EditIcon size={20}/>
                                 </button>
-                                <button className="btn btn-danger btn-sm margin-left-15" id={post.id}
-                                        onClick={this.removePost}>
+                                <button className="btn btn-danger btn-sm margin-left-15" id={post.id} onClick={this.removePost}>
                                     <DeleteIcon size={20}/>
                                 </button>
                             </div>
