@@ -81,7 +81,7 @@ export function addVote(id){
     }
 }
 
-export function subtractVote(id, voteOrder){
+export function subtractVote(id){
     const request = axios.post(`${API_URL}/posts/${id}`, {option: "downVote"})
     return dispatch => {
         request.then(({data}) => {

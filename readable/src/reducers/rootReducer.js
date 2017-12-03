@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 
 import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS } from '../actions/PostAction'
-import { GET_POST_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT } from "../actions/CommentAction";
+import { GET_POST_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, SORT_BY_COMMENTS } from "../actions/CommentAction";
 import { GET_CATEGORIES } from '../actions/CategoryAction'
+
+import _ from 'lodash'
 
 const initialStates = { posts: [], comments: [] }
 
@@ -55,7 +57,7 @@ function categories (state = [], action){
 }
 
 function comments (state = initialStates.comments, action){
-    const { comments, postId, comment } = action
+    const { comments, postId, comment, orderType } = action
 
     switch (action.type) {
         case GET_POST_COMMENTS:
@@ -67,13 +69,29 @@ function comments (state = initialStates.comments, action){
             }
 
         case UPDATE_COMMENT:
+            let commentArr = state[postId].filter(current_comment_state => current_comment_state.id !== comment.id)
+            commentArr.push(comment)
             return {
-                [postId] : state[postId].filter(current_comment_state => current_comment_state.id !== comment.id).push(comment)
+                [postId] : commentArr
             }
 
         case ADD_COMMENT:
             return {
                 ...state, [postId]: state[postId].concat(comment)
+            }
+
+        case SORT_BY_COMMENTS:
+
+            let sortedCommentArr = comments.sort((a, b) => {
+                if (orderType === 'timestamp') {
+                    return a.timestamp < b.timestamp
+                } else if (orderType === 'voteScore') {
+                    return a.voteScore < b.voteScore;
+                }
+            })
+
+            return {
+                [postId] : sortedCommentArr
             }
 
         default:

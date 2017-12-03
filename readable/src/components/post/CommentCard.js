@@ -4,13 +4,25 @@ import {connect} from 'react-redux'
 import EditIcon from 'react-icons/lib/fa/edit'
 import DeleteIcon from 'react-icons/lib/md/delete'
 
-import { deleteComment } from '../../actions/CommentAction'
+import { deleteComment, addVote, subtractVote } from '../../actions/CommentAction'
 import CommentForm from './CommentForm'
 
 class CommentCard extends Component {
 
     componentWillMount() {
         this.setState({isEditMode: false})
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.comment) {
+            this.setState(prevState => ({
+                comment: nextProps.comment
+            }))
+        } else {
+            this.setState({
+                comment: null
+            })
+        }
     }
 
     removeComment = () => {
@@ -28,21 +40,13 @@ class CommentCard extends Component {
         this.setState({isEditMode: false})
     }
 
-
-
     doVoteComment = (option) => {
-        /*
-        let postId = this.props.post.id
+        let commentId = this.props.comment.id
         if (option === 'upVote') {
-            this.props.addVote(postId)
+            this.props.addVote(commentId)
         } else if (option === 'downVote') {
-            this.props.subtractVote(postId)
+            this.props.subtractVote(commentId)
         }
-        */
-    }
-
-    handleChange(event) {
-
     }
 
     render() {
@@ -92,10 +96,12 @@ class CommentCard extends Component {
 
 }
 
-function mapStateToProps({posts, categories}) {
-    return {posts, categories}
+function mapStateToProps({posts, categories, comments}) {
+    return {posts, categories, comments}
 }
 
 export default connect(mapStateToProps, {
-    deleteComment
+    deleteComment,
+    addVote,
+    subtractVote
 })(CommentCard)

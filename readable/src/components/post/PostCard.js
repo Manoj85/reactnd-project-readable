@@ -12,7 +12,6 @@ import { getCommentsById } from '../../actions/CommentAction'
 
 import PostForm from './PostForm'
 
-
 class PostCard extends Component {
 
     constructor() {
@@ -76,6 +75,11 @@ class PostCard extends Component {
 
     render() {
         const {post} = this.props
+
+        const postId = (!!post) ? post.id : ""
+        const comments = (!!this.props.comments) ? this.props.comments[postId] : []
+        const commentLength = (!!comments) ? comments.length : 0
+
         const customStyles = {
             content: {
                 top: '75px',
@@ -116,7 +120,7 @@ class PostCard extends Component {
                         </div>
                     </h5>
                     <h6 className="card-subtitle mb-2 text-muted">By: {post.author}</h6>
-                    <p className="card-comments">Comments: </p>
+                    <p className="card-comments">Comments: {commentLength} </p>
                 </div>
 
 

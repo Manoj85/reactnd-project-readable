@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPost } from '../../actions/PostAction'
-import { getCommentsById } from '../../actions/CommentAction'
+import { getCommentsById, sortByComments } from '../../actions/CommentAction'
 import PostCard from './PostCard'
 import CommentCard from './CommentCard'
 import CommentForm from './CommentForm'
@@ -25,6 +25,14 @@ class PostView extends Component {
         })
     }
 
+    sortBy = ( type ) => {
+        const post = this.props.posts[0]
+        const postId = (!!post) ? post.id : ""
+        const comments = this.props.comments[postId]
+
+        this.props.sortByComments(comments, postId, type)
+    }
+
     render() {
 
         const post = this.props.posts[0]
@@ -45,6 +53,14 @@ class PostView extends Component {
 
                         <div className="card-comments-box">
                             <label>Comments:</label>
+
+                            <section className="sortByContainer">
+                                <label className="sortByLabel"> Order By:</label>
+                                <a id="voteLink" onClick={() => this.sortBy('voteScore')}>Votes</a>
+                                <span> / </span>
+                                <a id="timestampLink" onClick={() => this.sortBy('timestamp')}>Date Created</a>
+                            </section>
+
                             {
                                 !!comments ?
                                     _.map(comments, (comment) => {
@@ -72,5 +88,6 @@ function mapStateToProps ({ posts, comments }) {
 
 export default connect(mapStateToProps, {
     getPost,
-    getCommentsById
+    getCommentsById,
+    sortByComments
 })(PostView)

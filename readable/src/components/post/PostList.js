@@ -40,8 +40,6 @@ class PostList extends Component {
         const { posts } = this.props
         const postsArr = _.values(posts);
 
-        console.log(postsArr)
-
         this.props.sortByPosts(postsArr, type)
     }
 
@@ -96,6 +94,7 @@ class PostList extends Component {
                 </Modal>
 
                 { !!posts && (_.map(posts, (post) => {
+
                     return (
                         <PostCard post={post} key={post.id} />
                     )
