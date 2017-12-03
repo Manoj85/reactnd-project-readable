@@ -5,6 +5,7 @@ import { getCommentsById, sortByComments } from '../../actions/CommentAction'
 import PostCard from './PostCard'
 import CommentCard from './CommentCard'
 import CommentForm from './CommentForm'
+import PageNotFound from './PageNotFound'
 import _ from 'lodash'
 
 class PostView extends Component {
@@ -34,46 +35,53 @@ class PostView extends Component {
     }
 
     render() {
-
         const post = this.props.posts[0]
-        const postId = (!!post) ? post.id : ""
-        const comments = this.props.comments[postId]
-        const commentLength = (!!comments) ? comments.length : 0
+
+        if(!post) return (<PageNotFound />)
+        if(post.error) return '404 not found';
+        if(!post.id) return (<PageNotFound />)
+
+        const postId = post.id
+        const comments = this.props.comments[postId] ? this.props.comments[postId] : []
+        const commentLength = comments.length
 
         return (
             <div className="container container-body">
                 <div className="row margin-15">
                     <div className="col-md-10">
-                        {post ?
-                            <PostCard post={post}
-                                      key={postId}
-                                      numcomments={commentLength}/>
-                            : "Post Not Found!!"
-                        }
+                        {!!post ?
+                            <section>
+                                <PostCard post={post}
+                                          key={postId}
+                                          numcomments={commentLength}/>
 
-                        <div className="card-comments-box">
-                            <label>Comments:</label>
+                                <div className="card-comments-box">
+                                    <label>Comments:</label>
 
-                            <section className="sortByContainer">
-                                <label className="sortByLabel"> Order By:</label>
-                                <a id="voteLink" onClick={() => this.sortBy('voteScore')}>Votes</a>
-                                <span> / </span>
-                                <a id="timestampLink" onClick={() => this.sortBy('timestamp')}>Date Created</a>
+                                    <section className="sortByContainer">
+                                        <label className="sortByLabel"> Order By:</label>
+                                        <a id="voteLink" onClick={() => this.sortBy('voteScore')}>Votes</a>
+                                        <span> / </span>
+                                        <a id="timestampLink" onClick={() => this.sortBy('timestamp')}>Date Created</a>
+                                    </section>
+
+                                    {
+                                        !!comments ?
+                                            _.map(comments, (comment) => {
+                                                return (
+                                                    <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
+                                                )
+                                            })
+                                            :
+                                            <div>No Comments Found!!</div>
+                                    }
+
+                                    <CommentForm currentPost={post} buttonType="Add" onSubmit={() => {this.closeEditMode()}}/>
+                                </div>
                             </section>
 
-                            {
-                                !!comments ?
-                                    _.map(comments, (comment) => {
-                                        return (
-                                            <CommentCard comment={comment} key={comment.id} post={this.props.posts[0]}/>
-                                        )
-                                    })
-                                    :
-                                    <div>No Comments Found!!</div>
-                            }
-
-                            {post ? <CommentForm currentPost={post} buttonType="Add" onSubmit={() => {this.closeEditMode()}}/> : "" }
-                        </div>
+                            : ""
+                        }
                     </div>
 
                 </div>

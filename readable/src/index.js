@@ -26,6 +26,7 @@ import './components/post/posts.css'
 import './components/post/comments.css'
 import './components/category/category.css'
 import './components/post/sorts.css'
+import './components/post/NotFound.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 // Redux dev tools

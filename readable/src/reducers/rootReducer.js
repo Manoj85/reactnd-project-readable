@@ -4,8 +4,6 @@ import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS 
 import { GET_POST_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, SORT_BY_COMMENTS } from "../actions/CommentAction";
 import { GET_CATEGORIES } from '../actions/CategoryAction'
 
-import _ from 'lodash'
-
 const initialStates = { posts: [], comments: [] }
 
 function posts(state = initialStates.posts, action){
