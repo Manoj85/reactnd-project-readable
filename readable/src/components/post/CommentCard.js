@@ -14,14 +14,16 @@ class CommentCard extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.comment) {
-            this.setState(prevState => ({
-                comment: nextProps.comment
-            }))
-        } else {
-            this.setState({
-                comment: null
-            })
+        if( nextProps.comment !== this.props.comment ) {
+            if (nextProps.comment) {
+                this.setState(prevState => ({
+                    comment: nextProps.comment
+                }))
+            } else {
+                this.setState({
+                    comment: null
+                })
+            }
         }
     }
 
