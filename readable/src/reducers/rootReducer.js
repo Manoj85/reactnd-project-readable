@@ -67,10 +67,8 @@ function comments (state = initialStates.comments, action){
             }
 
         case UPDATE_COMMENT:
-            let commentArr = state[postId].filter(current_comment_state => current_comment_state.id !== comment.id)
-            commentArr.push(comment)
             return {
-                [postId] : commentArr
+                [postId] : state[postId].map(current_state => current_state.id === comment.id ? comment : current_state)
             }
 
         case ADD_COMMENT:
