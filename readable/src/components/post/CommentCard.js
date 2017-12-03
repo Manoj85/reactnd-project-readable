@@ -55,7 +55,7 @@ class CommentCard extends Component {
                             <div className="col-md-1">
                                 <div className="vote">
                                     <a className="vote-up-off" title="" onClick={() => this.doVoteComment('upVote')}>upvote</a>
-                                    <span className="vote-count-post"></span>
+                                    <span className="vote-count-post">{comment.voteScore}</span>
                                     <a className="vote-down-off" title="" onClick={() => this.doVoteComment('downVote')}>downvote</a>
                                 </div>
                             </div>
