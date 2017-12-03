@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { getPost } from '../../actions/PostAction'
 import { getCommentsById, sortByComments } from '../../actions/CommentAction'
 import PostCard from './PostCard'
@@ -18,7 +19,7 @@ class PostView extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.posts[0] === null) {
-            return nextProps.history.push("/404")
+            return <Redirect to={'/404'} />
         }
         this.setState({
             posts: nextProps.posts[0],

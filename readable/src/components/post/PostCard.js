@@ -16,12 +16,7 @@ class PostCard extends Component {
 
     constructor() {
         super();
-
-        this.state = {
-            modalIsOpen: false
-        };
-
-        this.openModal = this.openModal.bind(this);
+        this.state = { modalIsOpen: false };
         this.closeModal = this.closeModal.bind(this);
     }
 
@@ -45,10 +40,6 @@ class PostCard extends Component {
         }
     }
 
-    openModal() {
-        this.setState({modalIsOpen: true});
-    }
-
     closeModal() {
         this.setState({modalIsOpen: false});
     }
@@ -61,16 +52,12 @@ class PostCard extends Component {
     }
 
     editPost = () => {
-        this.openModal()
+        this.setState({modalIsOpen: true});
     }
 
-    doVotePost = (option) => {
-        let postId = this.props.post.id
-        if (option === 'upVote') {
-            this.props.addVote(postId)
-        } else if (option === 'downVote') {
-            this.props.subtractVote(postId)
-        }
+    doVotePost = option => {
+        const { post, addVote, subtractVote } = this.props
+        option === 'upVote' ? addVote(post.id) : subtractVote(post.id);
     }
 
     render() {
@@ -105,7 +92,7 @@ class PostCard extends Component {
 
                             <div className="col-md-7">
                                 <div className="margin-bottom-10">
-                                    <Link to={'/' + post.category + '/' + post.id}> {post.title} </Link>
+                                    <Link to={`/${post.category}/${post.id}`}> {post.title} </Link>
                                     <span className="text-muted" style={{fontSize: 16}}>{post.timestamp}</span>
                                 </div>
                                 { showBody ?

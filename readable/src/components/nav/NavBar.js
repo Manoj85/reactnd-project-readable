@@ -4,21 +4,17 @@ import React, { Component } from 'react'
 // ReactStrap
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
-
 class NavBar extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
+        this.toggle = this.toggle.bind(this)
+        this.state = { isOpen: false }
+    }
 
-        this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false
-        };
-    }
     toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen
-        });
+        this.setState({ isOpen: !this.state.isOpen })
     }
+
     render() {
         return (
             <Navbar color="light" light expand="md">

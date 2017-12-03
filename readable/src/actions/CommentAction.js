@@ -1,13 +1,8 @@
 import axios from 'axios'
-import { API_URL, API_URL_HEADERS } from './global';
+import { API_URL, API_URL_HEADERS } from './global'
+import { GET_POST_COMMENTS, ADD_COMMENT, DELETE_COMMENT, UPDATE_COMMENT, SORT_BY_COMMENTS } from "../actions/actionTypes"
 
 axios.defaults.headers.common['Authorization'] = API_URL_HEADERS
-
-export const GET_POST_COMMENTS = 'GET_POST_COMMENTS'
-export const ADD_COMMENT = 'ADD_COMMENT'
-export const UPDATE_COMMENT = 'UPDATE_COMMENT'
-export const DELETE_COMMENT = 'DELETE_COMMENT'
-export const SORT_BY_COMMENTS = 'SORT_BY_COMMENTS'
 
 export function getCommentsById(id){
     const request = axios.get(`${API_URL}/posts/${id}/comments`)

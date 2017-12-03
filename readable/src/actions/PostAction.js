@@ -1,15 +1,8 @@
 import axios from 'axios'
-import { API_URL, API_URL_HEADERS } from './global';
+import { API_URL, API_URL_HEADERS } from './global'
+import { GET_POST, GET_POSTS, ADD_POST, UPDATE_POST, DELETE_POST, SORT_BY_POSTS } from '../actions/actionTypes'
 
 axios.defaults.headers.common['Authorization'] = API_URL_HEADERS
-
-export const GET_POSTS = 'GET_POSTS'
-export const GET_POST = 'GET_POST'
-export const ADD_POST = 'ADD_POST'
-export const UPDATE_POST = 'UPDATE_POST'
-export const DELETE_POST = 'DELETE_POST'
-
-export const SORT_BY_POSTS = 'SORT_BY_POSTS'
 
 export function getPosts(){
 	const request = axios.get(`${API_URL}/posts`)

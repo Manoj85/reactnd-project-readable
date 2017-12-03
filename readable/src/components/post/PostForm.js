@@ -42,7 +42,6 @@ class PostForm extends Component {
 			category: post.category,
 			author: post.author,
 			mode: 'edit'
-
 		})
 	}
 
@@ -68,18 +67,14 @@ class PostForm extends Component {
     }
 
     handleSubmit(event) {
-
         const { id, timestamp, title, body, category, author, mode } = this.state
-        const { currentPost } = this.props
+        const { currentPost, editPost, addPost } = this.props
 
 		if (mode === 'edit') {
-            this.props.editPost(currentPost.id, { title, body, category, author })
-		}
-
-        if (mode === 'add') {
-            this.props.addPost({ id, timestamp, title, body, category, author })
+            editPost(currentPost.id, { title, body, category, author })
+		} else  {
+            addPost({ id, timestamp, title, body, category, author })
         }
-
     }
 
 	render(){

@@ -53,7 +53,7 @@ class CommentForm extends Component {
     }
 
     handleChange(event) {
-        let key = event.target.id
+        const key = event.target.id
         let editComment = this.state
         editComment[key] = event.target.value
         this.setState({
@@ -72,22 +72,19 @@ class CommentForm extends Component {
         parentId: Should match a post id in the database.
         */
         const { id, timestamp, body, author, mode } = this.state
-        const { currentPost, currentComment } = this.props
+        const { currentPost, currentComment, editComment, addComment } = this.props
 
-		if (mode === 'edit') {
-            this.props.editComment(currentComment.id, { body, timestamp })
-		}
-
-        if (mode === 'add') {
+        if (mode === 'edit') {
+            editComment(currentComment.id, { body, timestamp })
+        } else {
             const postId = currentPost.id;
-            this.props.addComment({ id, timestamp, body, author: 'manoj', parentId: postId, voteScore: 1 })
+            addComment({ id, timestamp, body, author: 'manoj', parentId: postId, voteScore: 0 })
         }
     }
 
 	render(){
-
-        const { id, timestamp, body, mode } = this.state
-        const { currentPost, buttonType } = this.props
+        const { body, mode } = this.state
+        const { buttonType } = this.props
 
 		return (
             <form className="comment-form" onSubmit={this.handleSubmit}>
