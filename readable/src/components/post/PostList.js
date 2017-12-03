@@ -70,12 +70,12 @@ class PostList extends Component {
                     <div className="row">
                         <div className="col-md-12">
 
-                            <section style={{width: '100%'}}>
-                                <h4 style={{float: 'left'}}>Add Post</h4>
-                                <button className="btn btn-danger btn-sm" style={{float: 'right'}} onClick={this.closeModal}>
+                            <section className="width-100">
+                                <h4 className="float-left">Add Post</h4>
+                                <button className="btn btn-danger btn-sm float-right" onClick={this.closeModal}>
                                     <CloseIcon size={20}/>
                                 </button>
-                                <p style={{clear: 'both'}}></p>
+                                <p className="float-clear"></p>
                             </section>
 
                             <PostForm onSubmit={() => {this.closeModal()}} onCancel={() => {this.closeModal()}}/>

@@ -18,3 +18,19 @@
 .margin-left-8 {
     margin-left: 8px;
 }
+
+.float-left {
+    float: left
+}
+
+.float-right {
+    float: right
+}
+
+.float-clear {
+    clear: both
+}
+
+.width-100 {
+    width: 100%
+}
