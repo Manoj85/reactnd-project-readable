@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import EditIcon from 'react-icons/lib/fa/edit'
-import DeleteIcon from 'react-icons/lib/md/delete'
+import { MdEdit } from 'react-icons/md'
+import { MdDelete } from 'react-icons/md'
 
 import { deleteComment, addVote, subtractVote } from '../../actions/CommentAction'
 import CommentForm from './CommentForm'
@@ -83,10 +83,10 @@ class CommentCard extends Component {
                             {!this.state.isEditMode ?
                                 <div className="col-md-2 ml-md-auto">
                                     <button className="btn btn-info btn-sm margin-left-15" id={comment.id} onClick={this.editComment}>
-                                        <EditIcon size={20}/>
+                                        <MdEdit size={20}/>
                                     </button>
                                     <button className="btn btn-danger btn-sm margin-left-15" id={comment.id} onClick={this.removeComment}>
-                                        <DeleteIcon size={20}/>
+                                        <MdDelete size={20}/>
                                     </button>
                                 </div>
                                 : ""

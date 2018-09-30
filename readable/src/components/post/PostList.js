@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 import _ from 'lodash'
 import Modal from 'react-modal'
-import CloseIcon from 'react-icons/lib/fa/close'
-import AddIcon from 'react-icons/lib/io/android-add'
+import { FaWindowClose } from 'react-icons/fa'
+import { MdAdd } from 'react-icons/md'
 
 import PostCard from './PostCard'
 import PostForm from './PostForm'
@@ -48,7 +48,7 @@ class PostList extends Component {
         return (
             <div className="post-container">
                 <button className="btn btn-info btn-sm" onClick={this.addPost}>
-                    Add Post <AddIcon size={20}/>
+                    Add Post <MdAdd size={20}/>
                 </button>
 
                 <section className="sortByContainer">
@@ -73,7 +73,7 @@ class PostList extends Component {
                             <section className="width-100">
                                 <h4 className="float-left">Add Post</h4>
                                 <button className="btn btn-danger btn-sm float-right" onClick={this.closeModal}>
-                                    <CloseIcon size={20}/>
+                                    <FaWindowClose size={20}/>
                                 </button>
                                 <p className="float-clear"></p>
                             </section>
